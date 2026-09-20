@@ -13,7 +13,7 @@
 ## Selbstprüfung
 
 - [ ] Eigenen Diff auf GitHub gelesen und verstanden
-- [ ] Erforderliche CI-Prüfungen grün
+- [ ] Erforderliche CI-Prüfungen grün (beim Projektstart ohne CI: offen lassen und unten begründen)
 - [ ] Tests ergänzt oder begründet nicht nötig
 - [ ] Dokumentation und Abnahme-Nachweise angepasst oder nicht betroffen
 - [ ] Keine Secrets oder unbeabsichtigten Dateien enthalten

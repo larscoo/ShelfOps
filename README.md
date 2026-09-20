@@ -30,7 +30,6 @@ auf Port 8000 laufen und `/health`, `/ready` und `/metrics` bereitstellen.
 - [Umfang, API und Geschäftsregeln](docs/umfang.md)
 - [Arbeitsweise und Selbstprüfung](CONTRIBUTING.md)
 - [Abnahme-Checkliste](abnahme-checkliste.md)
-- [Projektstand und nächste Schritte](docs/projektstand.md)
 - [Quellen und KI-Nutzung](docs/quellen-und-ki.md)
 
 Deployment-Runbook, Monitoring-Anleitung, C4-Architektur und ADRs entstehen mit den jeweiligen Umsetzungsschritten.

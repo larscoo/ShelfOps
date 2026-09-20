@@ -8,7 +8,9 @@ ShelfOps ist eine Einzelarbeit im Modul CDS212.
 2. Kleine, zusammengehörige Änderungen entwickeln und lokal prüfen.
 3. Den Branch pushen und einen Pull Request mit Was, Warum und Selbstprüfung öffnen.
 4. Den eigenen Diff auf GitHub nochmals lesen und die Prüfergebnisse festhalten.
-5. Erst nach grünen erforderlichen CI-Prüfungen mergen, danach den Branch löschen.
+5. Ab Einführung der CI nur nach grünen Pflichtprüfungen mergen; für den
+   Projektstart in Woche 2 gilt die unten dokumentierte Ausnahme. Danach den
+   Branch löschen.
 
 `main` soll jederzeit deploybar bleiben. Keine direkten Pushes oder Force-Pushes
 auf `main`, keine künstlichen oder rückdatierten Commits. Mindestens fünf
@@ -38,7 +40,7 @@ die tatsächliche Änderung. Keine Secrets, lokalen Umgebungen oder IDE-Dateien 
 
 ## Prüfung und Nachweise
 
-Für Dokumentationsänderungen: Inhalte, relative Links und `git diff --check` prüfen. 
+Für Dokumentationsänderungen: Inhalte, relative Links und `git diff --check` prüfen.
 Tests sind bei reiner Dokumentation nicht nötig, im PR begründen.
 
 Sobald Anwendung und Werkzeuge eingerichtet sind, gehören diese Prüfungen vor jeden Code-PR (aktuell noch nicht ausführbar):
@@ -49,7 +51,7 @@ ruff format --check .
 pytest --cov=app --cov-report=term-missing
 ```
 
-Die vollständige CI muss zusätzlich das Coverage-Gate von mindestens 80 % und den Docker-Build enthalten, später auch Trivy. 
+Die vollständige CI muss zusätzlich das Coverage-Gate von mindestens 80 % und den Docker-Build enthalten, später auch Trivy.
 Nachweise verlinken den konkreten Workflow-Lauf oder dokumentieren Befehl, Datum und tatsächliches Ergebnis.
 Nicht ausgeführte Prüfungen werden ausdrücklich als offen bezeichnet.
 
@@ -62,13 +64,29 @@ Zielkonfiguration für `main`: Pull Requests erforderlich, direkte Pushes und Fo
 ersten CI-Lauf die tatsächlichen Check-Namen als Pflichtprüfungen hinterlegen.
 Für diese Einzelarbeit ist keine fremde Review-Freigabe erforderlich, die schriftliche Selbstprüfung bleibt Pflicht.
 
-Solange die CI fehlt, bleibt der erste PR ein Entwurf. Der Projektstart wird
-nicht als vollständig CI-geprüft ausgegeben. Vor dem ersten Merge ist eine
-passende CI einzurichten; mindestens fünf spätere PRs müssen die vollständige
-Kurs-CI durchlaufen. Konkrete Umsetzung und Nachweise folgen in der CI-Etappe.
+Woche 2 verlangt einen ersten gemergten PR; CI ist Inhalt von Woche 5. Deshalb
+kann der Dokumentations-PR nach lokaler Prüfung und persönlicher Selbstprüfung
+auf GitHub gemergt werden. In seiner Beschreibung steht ausdrücklich:
+„Keine CI vorhanden; Dokumentation lokal geprüft.“ Der PR zählt nicht zu den
+mindestens fünf für die Abschlussabnahme benötigten PRs mit grüner CI.
+
+Ab Woche 5 werden die tatsächlichen CI-Checks als Pflichtprüfungen hinterlegt.
+Mindestens fünf PRs müssen vor der Abgabe nachweislich mit grüner CI gemergt sein.
+
+Für den ersten PR verwenden wir „Create a merge commit“, damit die einzeln
+geprüften Commits im Verlauf von `main` erhalten bleiben. Nach dem Merge lokal:
+
+```sh
+git switch main
+git pull --ff-only
+git log --oneline --graph --all
+```
+
+Ein Merge-Commit ersetzt keinen eigenen fachlichen Arbeits-Commit. Die Historie
+wird nicht nachträglich aufgeteilt oder umgeschrieben, um eine Anzahl zu erreichen.
 
 ## Umfang und Eigenleistung
 
-Neue Funktionen ausserhalb von [docs/umfang.md](docs/umfang.md) zunächst als Vorschlag dokumentieren. 
-Entscheidungen mit Alternativen und Konsequenzen in ADRs festhalten, sobald die entsprechenden Architekturentscheidungen getroffen werden. 
+Neue Funktionen ausserhalb von [docs/umfang.md](docs/umfang.md) zunächst als Vorschlag dokumentieren.
+Entscheidungen mit Alternativen und Konsequenzen in ADRs festhalten, sobald die entsprechenden Architekturentscheidungen getroffen werden.
 Übernahmen aus dem Kurs kennzeichnen und KI-Nutzung fortlaufend dokumentieren.

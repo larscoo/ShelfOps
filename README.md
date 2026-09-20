@@ -7,10 +7,11 @@ nachvollziehbaren Aufbau einer vollständigen DevOps-Kette.
 
 ## Projektstand
 
-Der erste Teil von Woche 3 ist implementiert: Bücher erfassen und auflisten
-sowie `/health`, mit einer kleinen Browseroberfläche unter `/`. Daten liegen pro App-Instanz im Arbeitsspeicher und gehen bei
-einem Neustart verloren. Exemplare, Mitglieder, Ausleihen, `/ready`, `/metrics`
-und PostgreSQL folgen in weiteren Schritten. Docker und CI sind noch nicht vorhanden.
+In Woche 3 sind Bücher, physische Exemplare und Mitglieder erfassbar und
+auflistbar, über die JSON-API und die Browseroberfläche unter `/`. `/health`
+prüft die Liveness. Daten liegen pro App-Instanz im Arbeitsspeicher und gehen
+beim Neustart verloren. Ausleihen, Rückgaben, `/ready`, `/metrics` und PostgreSQL
+folgen noch. Docker und CI sind noch nicht vorhanden.
 
 ## Lokaler Schnellstart
 
@@ -25,14 +26,14 @@ pip install -r requirements-dev.txt
 make run
 ```
 
-Vor dem Merge liegt dieser Stand auf `feature/book-catalog`; nach dem Klonen
-zuerst `git switch feature/book-catalog` ausführen. Der Branch muss dafür gepusht sein.
-
 Der Entwicklungsserver läuft unter `http://127.0.0.1:8000`. Mit `Ctrl+C` stoppen.
 `DATABASE_URL` muss in dieser Version ungesetzt oder leer sein. Bei gesetzter
 Variable bricht der Start mit einer Erklärung ab, statt unbemerkt flüchtige Daten
 zu verwenden. Öffne `http://127.0.0.1:8000` im Browser: Titel und Autor
 eingeben, „Buch hinzufügen“ drücken. Das Buch erscheint direkt im Katalog.
+Im Bereich „Exemplare“ ein Buch auswählen und ein physisches Exemplar anlegen.
+Unter „Mitglieder“ einen erfundenen Namen erfassen. Gleiche Namen sind erlaubt;
+die vergebene ID unterscheidet die Mitglieder.
 Die Oberfläche verwendet dieselbe JSON-API wie die folgenden `curl`-Aufrufe.
 Zum Erfassen ist JavaScript erforderlich; die bestehende Liste wird bereits
 vom Server gerendert.
@@ -50,6 +51,38 @@ curl -i http://127.0.0.1:8000/books
 
 Erwartet: HTTP 200 für Health und Listen, HTTP 201 beim Anlegen. Ein neuer
 Speicher beginnt mit einer leeren Liste; das erste Buch erhält ID 1.
+
+## Mitglieder und Exemplare
+
+Die IDs aus der jeweiligen Antwort für weitere Aufrufe verwenden. Dieses
+Beispiel setzt ein bereits erfasstes Buch mit ID 1 voraus:
+
+```sh
+curl -i http://127.0.0.1:8000/copies \
+  -H 'Content-Type: application/json' -d '{"book_id":1}'
+curl -i http://127.0.0.1:8000/copies
+curl -i http://127.0.0.1:8000/members \
+  -H 'Content-Type: application/json' -d '{"name":"Alex Beispiel"}'
+curl -i http://127.0.0.1:8000/members
+```
+
+Ein Buch darf mehrere Exemplare haben. Jedes Exemplar erhält eine eigene ID
+und verweist mit `book_id` auf das Buch. Noch sind alle Exemplare `available`,
+weil Ausleihen erst im nächsten Schritt umgesetzt werden. Der Zustand wird
+nicht als unabhängig änderbares Feld gespeichert.
+
+| Route | Methode | Ergebnis |
+|---|---|---|
+| `/` | GET | Browseroberfläche |
+| `/health` | GET | Liveness, ohne Speicherzugriff |
+| `/books` | GET / POST | Bücher auflisten / anlegen |
+| `/copies` | GET / POST | Exemplare auflisten / anlegen |
+| `/members` | GET / POST | Mitglieder auflisten / anlegen |
+
+Unbekannte `book_id`: HTTP 404. Ungültige Eingaben: HTTP 400.
+IDs müssen positive Ganzzahlen sein, Texte 1–200 Zeichen nach dem Trimmen.
+Falscher Content-Type beim Anlegen: HTTP 415. Fehlerantworten enthalten
+`error` und `message`; eine abgelehnte Anfrage legt keine Datensätze an.
 
 ## Prüfen und bauen
 
@@ -75,7 +108,7 @@ Lockfile. Wheel und sdist enthalten keine bereits installierten Abhängigkeiten.
 | Datei | Aufgabe |
 |---|---|
 | `app/__init__.py` | Application Factory: erzeugt eine eigene App mit eigenem Speicher |
-| `app/models.py` | Buchdaten und Validierung |
+| `app/models.py` | Bücher, Exemplare, Mitglieder und Eingabevalidierung |
 | `app/repository.py` | Speicher-Schnittstelle und In-Memory-Implementierung |
 | `app/routes.py` | Übersetzt HTTP-Anfragen in Validierung und Speicherzugriffe |
 | `app/templates/`, `app/static/` | Browseroberfläche mit Jinja, CSS und kleinem JavaScript |
@@ -97,7 +130,7 @@ Die erste Version wird über eine JSON-API und eine kleine Browseroberfläche be
 Eine zweite aktive Ausleihe desselben Exemplars wird abgelehnt. Nach Ablauf
 seiner Frist ist ein noch nicht zurückgegebenes Exemplar überfällig.
 Der vollständige Vertrag steht in [docs/umfang.md](docs/umfang.md).
-Bücher sind bereits implementiert; die weiteren Schritte dieses Ablaufs folgen noch.
+Bücher, Exemplare und Mitglieder sind implementiert; Ausleihen und Rückgaben folgen noch.
 
 ## Ablauf entlang des Kurses
 

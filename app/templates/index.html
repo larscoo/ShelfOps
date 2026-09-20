@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ShelfOps · Bücher</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='catalog.js') }}" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <a class="brand" href="{{ url_for('api.index') }}">ShelfOps<span>Bibliotheksverwaltung</span></a>
+      <span class="section-label">Buchkatalog</span>
+    </header>
+    <main>
+      <div class="intro">
+        <p class="eyebrow">DEINE BIBLIOTHEK</p>
+        <h1>Platz für die nächste Geschichte.</h1>
+        <p>Erfasse Bücher und behalte deinen Katalog im Blick.</p>
+      </div>
+      <div class="layout">
+        <section class="card" aria-labelledby="add-heading">
+          <h2 id="add-heading">Buch erfassen</h2>
+          <p class="hint">Titel und Autor sind Pflichtfelder.</p>
+          <form id="book-form" action="{{ url_for('api.create_book') }}" method="post">
+            <label for="title">Titel</label>
+            <input id="title" name="title" type="text" maxlength="200" required
+                   placeholder="z. B. Der Prozess">
+            <label for="author">Autor</label>
+            <input id="author" name="author" type="text" maxlength="200" required
+                   placeholder="z. B. Franz Kafka">
+            <button id="save-button" type="submit" disabled>Buch hinzufügen</button>
+          </form>
+          <p id="feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+          <noscript><p>Zum Erfassen bitte JavaScript aktivieren. Bestehende Bücher kannst du unten lesen.</p></noscript>
+        </section>
+        <section class="card catalog" aria-labelledby="catalog-heading">
+          <div class="catalog-header">
+            <h2 id="catalog-heading">Bücher im Katalog</h2>
+            <span id="book-count" class="count" aria-label="Anzahl Bücher">{{ books|length }}</span>
+          </div>
+          <div id="empty-state" class="empty-state" {% if books %}hidden{% endif %}>
+            <span class="empty-mark" aria-hidden="true">B</span>
+            <h3>Dein Katalog beginnt hier.</h3>
+            <p>Erfasse das erste Buch über das Formular.</p>
+          </div>
+          <ul id="book-list" class="book-list">
+            {% for book in books %}
+            <li>
+              <span class="book-number">#{{ book.id }}</span>
+              <div><h3>{{ book.title }}</h3><p>{{ book.author }}</p></div>
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+      </div>
+      <p class="storage-note">Lokaler Demobetrieb: Beim Neustart werden die erfassten Bücher gelöscht.</p>
+    </main>
+    <footer>ShelfOps <span>CDS212 · FH Graubünden</span></footer>
+  </body>
+</html>

@@ -5,6 +5,9 @@ Ausleihdauer: 28 Tage, ohne Ausleihlimit pro Mitglied.
 ## Zweck und Grenzen
 
 Bibliothekspersonal erfasst Bücher, physische Exemplare und Mitglieder und verwaltet Ausleihen und Rückgaben über eine JSON-API.
+Eine kleine Browseroberfläche unter `/` bedient diese API, beginnend mit dem
+Buchkatalog. Sie wächst mit den weiteren Fachfunktionen; ein separates
+Frontend-Framework ist nicht vorgesehen.
 
 ## Datenmodell
 

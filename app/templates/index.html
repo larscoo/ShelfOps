@@ -3,22 +3,26 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ShelfOps · Bücher</title>
+    <title>ShelfOps · Bibliothek</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="{{ url_for('static', filename='catalog.js') }}" defer></script>
   </head>
   <body>
     <header class="header">
       <a class="brand" href="{{ url_for('api.index') }}">ShelfOps<span>Bibliotheksverwaltung</span></a>
-      <span class="section-label">Buchkatalog</span>
+      <nav aria-label="Bereiche">
+        <a href="#books">Bücher</a>
+        <a href="#copies">Exemplare</a>
+        <a href="#members">Mitglieder</a>
+      </nav>
     </header>
     <main>
       <div class="intro">
         <p class="eyebrow">DEINE BIBLIOTHEK</p>
         <h1>Platz für die nächste Geschichte.</h1>
-        <p>Erfasse Bücher und behalte deinen Katalog im Blick.</p>
+        <p>Bücher, Exemplare und Mitglieder an einem Ort.</p>
       </div>
-      <div class="layout">
+      <div class="layout" id="books">
         <section class="card" aria-labelledby="add-heading">
           <h2 id="add-heading">Buch erfassen</h2>
           <p class="hint">Titel und Autor sind Pflichtfelder.</p>
@@ -54,7 +58,66 @@
           </ul>
         </section>
       </div>
-      <p class="storage-note">Lokaler Demobetrieb: Beim Neustart werden die erfassten Bücher gelöscht.</p>
+      <div class="layout collection-section" id="copies">
+        <section class="card" aria-labelledby="copy-heading">
+          <h2 id="copy-heading">Exemplar erfassen</h2>
+          <p class="hint">Ein Exemplar steht für ein physisches Buch. Mehrere Exemplare pro Titel sind möglich.</p>
+          <form id="copy-form" action="{{ url_for('api.create_copy') }}" method="post">
+            <label for="book-id">Buch auswählen</label>
+            <select id="book-id" name="book_id" required {% if not books %}disabled{% endif %}>
+              <option value="">Bitte ein Buch wählen</option>
+              {% for book in books %}
+              <option value="{{ book.id }}">#{{ book.id }} · {{ book.title }} — {{ book.author }}</option>
+              {% endfor %}
+            </select>
+            <p id="copy-hint" class="hint" {% if books %}hidden{% endif %}>Erfasse zuerst ein Buch im Katalog.</p>
+            <button type="submit" disabled>Exemplar hinzufügen</button>
+          </form>
+          <p id="copy-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+        </section>
+        <section class="card catalog" aria-labelledby="copies-heading">
+          <div class="catalog-header">
+            <h2 id="copies-heading">Exemplare</h2>
+            <span id="copy-count" class="count" aria-label="Anzahl Exemplare">{{ copies|length }}</span>
+          </div>
+          <p id="copy-empty" class="hint" {% if copies %}hidden{% endif %}>Noch keine Exemplare erfasst.</p>
+          <ul id="copy-list" class="book-list">
+            {% for copy in copies %}
+            <li>
+              <span class="book-number">#{{ copy.id }}</span>
+              <div><h3>{{ books_by_id[copy.book_id].title }}</h3>
+                <p>Buch #{{ copy.book_id }} · Verfügbar</p></div>
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+      </div>
+      <div class="layout collection-section" id="members">
+        <section class="card" aria-labelledby="member-heading">
+          <h2 id="member-heading">Mitglied erfassen</h2>
+          <p class="hint">Für diese Demo bitte nur erfundene Namen verwenden.</p>
+          <form id="member-form" action="{{ url_for('api.create_member') }}" method="post">
+            <label for="member-name">Name</label>
+            <input id="member-name" name="name" type="text" maxlength="200" required
+                   placeholder="z. B. Alex Beispiel">
+            <button type="submit" disabled>Mitglied hinzufügen</button>
+          </form>
+          <p id="member-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+        </section>
+        <section class="card catalog" aria-labelledby="members-heading">
+          <div class="catalog-header">
+            <h2 id="members-heading">Mitglieder</h2>
+            <span id="member-count" class="count" aria-label="Anzahl Mitglieder">{{ members|length }}</span>
+          </div>
+          <p id="member-empty" class="hint" {% if members %}hidden{% endif %}>Noch keine Mitglieder erfasst.</p>
+          <ul id="member-list" class="book-list">
+            {% for member in members %}
+            <li><span class="book-number">#{{ member.id }}</span><div><h3>{{ member.name }}</h3></div></li>
+            {% endfor %}
+          </ul>
+        </section>
+      </div>
+      <p class="storage-note">Lokaler Demobetrieb: Beim Neustart werden alle erfassten Daten gelöscht.</p>
     </main>
     <footer>ShelfOps <span>CDS212 · FH Graubünden</span></footer>
   </body>

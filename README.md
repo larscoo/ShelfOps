@@ -11,7 +11,7 @@ Der fachliche Kern läuft lokal: Bücher, physische Exemplare und Mitglieder
 erfassen sowie Ausleihen und Rückgaben verwalten, über JSON-API und
 Browseroberfläche. `/health` prüft die Liveness. Daten liegen pro App-Instanz im
 Arbeitsspeicher und gehen beim Neustart verloren. `/ready`, `/metrics` und
-PostgreSQL folgen noch. Docker und CI sind noch nicht vorhanden.
+PostgreSQL folgen noch. Ein Dockerfile ist vorhanden; Compose und CI folgen später.
 
 ## Lokaler Schnellstart
 
@@ -55,6 +55,47 @@ curl -i http://127.0.0.1:8000/books
 
 Erwartet: HTTP 200 für Health und Listen, HTTP 201 beim Anlegen. Ein neuer
 Speicher beginnt mit einer leeren Liste; das erste Buch erhält ID 1.
+
+## Start im Docker-Container
+
+Voraussetzung: Docker Desktop läuft. Im Projektordner:
+
+```sh
+docker build -t shelfops:local .
+docker run --rm shelfops:local whoami
+docker run --rm --name shelfops -p 127.0.0.1:8000:8000 shelfops:local
+```
+
+`whoami` muss `appuser` ausgeben. Falls `make run` noch Port 8000 belegt,
+den Entwicklungsserver vorher mit `Ctrl+C` stoppen. Anschliessend die Oberfläche
+unter `http://localhost:8000` öffnen. In einem zweiten Terminal:
+
+```sh
+curl -i http://localhost:8000/health
+docker inspect --format '{{.State.Health.Status}}' shelfops
+docker logs shelfops
+docker stop shelfops
+```
+
+Nach dem ersten erfolgreichen Healthcheck steht der Status auf `healthy`.
+`docker stop` beendet Gunicorn kontrolliert; `--rm` entfernt danach den Container.
+Alle Daten sind weiterhin flüchtig. `DATABASE_URL` bleibt ungesetzt und
+`GUNICORN_WORKERS` auf `1`, weil mehrere Prozesse getrennte In-Memory-Daten hätten.
+
+Das [Dockerfile](Dockerfile) basiert auf `beispiel-app/Dockerfile` des CDS212-Kurses:
+
+- `base`: Python 3.12 slim, Arbeitsverzeichnis und Python-Umgebung.
+- `builder`: liest Laufzeit-Abhängigkeiten aus `pyproject.toml` und installiert
+  sie ohne pip-Cache nach `/install`, vor dem Kopieren des Anwendungscodes.
+- `runtime`: übernimmt nur installierte Laufzeitpakete und Anwendungscode;
+  startet als `appuser` (UID 10001) mit Gunicorn auf Port 8000.
+- Der Healthcheck fragt `/health` mit Pythons Standardbibliothek ab.
+- `exec` im Startbefehl reicht Stop-Signale direkt an Gunicorn weiter.
+
+[.dockerignore](.dockerignore) lässt nur Dockerfile, Paketkonfiguration und
+Anwendungscode in den Build-Kontext. `.git`, `.venv`, Tests, `.env` und lokale
+Build-Artefakte bleiben draussen. Es gibt keinen Bind-Mount: Änderungen am Code
+werden erst nach erneutem Build und Containerstart sichtbar.
 
 ## Mitglieder und Exemplare
 

@@ -1,0 +1,5 @@
+REPOSITORY   TAG       IMAGE ID       SIZE
+shelfops     naiv      e97f68e35d25   1.17GB
+shelfops     local     d36853c7abd8   187MB
+[shelfops:local] sha256:d36853c7abd83c52e9de8f4f25b12bf198c8588c22a0785ddb63db12d7c681ac linux/arm64 187386001 bytes
+[shelfops:naiv] sha256:e97f68e35d25de25d2000caccd03a78ba3a693e0dfc5f7d20e159a56a8e3d562 linux/arm64 1173595659 bytes

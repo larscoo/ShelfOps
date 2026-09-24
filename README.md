@@ -180,11 +180,14 @@ und der aktuellen Zeit berechnet, nicht als unabhängig änderbares Feld gespeic
 | `/ready` | GET | Speicher verfügbar: 200; Datenbank nicht bereit: 503 |
 | `/books` | GET / POST | Bücher auflisten / anlegen |
 | `/copies` | GET / POST | Exemplare auflisten / anlegen |
+| `/copies/stats` | GET | Gesamtzahl sowie verfügbare, ausgeliehene und überfällige Exemplare |
 | `/members` | GET / POST | Mitglieder auflisten / anlegen |
 | `/loans` | GET / POST | Ausleihhistorie auflisten / Ausleihe anlegen |
 | `/loans/{id}/return` | POST | Rückgabe ohne Request-Body verarbeiten |
 
 Unbekannte `book_id`: HTTP 404. Ungültige Eingaben: HTTP 400.
+Die Statistik zählt `on_loan` und `overdue` getrennt: Ihre Summe mit `available`
+ergibt `total`. Nachweise zur Docker-Hausaufgabe stehen unter [abgabe/](abgabe/README.md).
 IDs müssen positive Ganzzahlen sein, Texte 1–200 Zeichen nach dem Trimmen.
 Falscher Content-Type beim Anlegen: HTTP 415. Fehlerantworten enthalten
 `error` und `message`; eine abgelehnte Anfrage legt keine Datensätze an.

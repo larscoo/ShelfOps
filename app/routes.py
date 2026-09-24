@@ -129,6 +129,15 @@ def create_copy():
     return jsonify(asdict(_repo().add_copy(book_id))), 201
 
 
+@bp.get("/copies/stats")
+def copy_stats():
+    copies = _repo().list_copies()
+    counts = {"available": 0, "on_loan": 0, "overdue": 0}
+    for copy in copies:
+        counts[copy.status] += 1
+    return jsonify(total=len(copies), **counts)
+
+
 @bp.get("/loans")
 def list_loans():
     return jsonify([loan_json(loan) for loan in _repo().list_loans()])

@@ -1,0 +1,9 @@
+# Comparison only: adapted from CDS212 woche-04-docker/code/Dockerfile.naiv.
+# Both builds deliberately retain the same safe .dockerignore.
+FROM python:3.12
+WORKDIR /app
+COPY . .
+RUN python -c "import pathlib,tomllib; p=tomllib.loads(pathlib.Path('pyproject.toml').read_text()); pathlib.Path('requirements.txt').write_text('\n'.join(p['project']['dependencies']))"
+RUN pip install -r requirements.txt
+EXPOSE 8000
+CMD ["flask", "--app", "wsgi", "run", "--host", "0.0.0.0", "--port", "8000"]

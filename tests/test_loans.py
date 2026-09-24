@@ -25,6 +25,35 @@ def borrow(client, copy_id=1, member_id=1):
     return client.post("/loans", json={"copy_id": copy_id, "member_id": member_id})
 
 
+def test_empty_copy_statistics(client):
+    response = client.get("/copies/stats")
+    assert response.status_code == 200
+    assert response.json == {"total": 0, "available": 0, "on_loan": 0, "overdue": 0}
+
+
+def test_copy_statistics_follow_loan_due_date_and_return(library):
+    client = library.client
+    loan = borrow(client).json
+    expected = {"total": 2, "available": 1, "on_loan": 1, "overdue": 0}
+    assert client.get("/copies/stats").json == expected
+    library.clock.now = datetime.fromisoformat(loan["due_at"])
+    assert client.get("/copies/stats").json == expected
+    library.clock.now += timedelta(microseconds=1)
+    assert client.get("/copies/stats").json == {
+        "total": 2,
+        "available": 1,
+        "on_loan": 0,
+        "overdue": 1,
+    }
+    client.post("/loans/1/return")
+    assert client.get("/copies/stats").json == {
+        "total": 2,
+        "available": 2,
+        "on_loan": 0,
+        "overdue": 0,
+    }
+
+
 def test_loan_dates_and_unlimited_member_loans(library):
     client = library.client
     assert client.get("/loans").json == []

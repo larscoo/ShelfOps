@@ -2,8 +2,9 @@
 
 ## Stand
 
-Die Pipeline ist vorbereitet, aber noch nicht auf GitHub ausgeführt.
-Ein lokaler Erfolg ersetzt weder den CI-Lauf noch den Nachweis des Merge-Schutzes.
+Die Pipeline ist auf GitHub erfolgreich gelaufen und die Pflichtchecks sind
+aktiv. Im Demo-PR ist der rote Lint-Check samt Merge-Sperre nachgewiesen.
+Der absichtliche Import ist lokal wieder entfernt; der grüne Demo-Lauf steht aus.
 Die Hausaufgabe wird auf ShelfOps im Repository-Wurzelverzeichnis übertragen.
 Wir testen Python 3.12 entsprechend `requires-python`; die Python-3.11-Matrix aus
 dem separaten Labor ist damit noch nicht erledigt.
@@ -12,9 +13,9 @@ dem separaten Labor ist damit noch nicht erledigt.
 - [x] `build` hängt über `needs: [lint, test]` von beiden Prüfungen ab.
 - [x] Tests für In-Memory und PostgreSQL mit Coverage-Gate konfiguriert.
 - [x] CI-Badge im README verlinkt.
-- [ ] Erster vollständiger GitHub-Lauf erfolgreich.
-- [ ] Pflichtchecks für `main` eingerichtet und geprüft.
-- [ ] Demo-PR mit rotem Lint-Check und gesperrtem Merge dokumentiert.
+- [x] Erster vollständiger GitHub-Lauf erfolgreich.
+- [x] Pflichtchecks für `main` eingerichtet und geprüft.
+- [x] Demo-PR mit rotem Lint-Check und gesperrtem Merge dokumentiert.
 - [ ] Derselbe PR nach Reparatur grün und mergebar dokumentiert.
 - [ ] Screenshots im Repository und im PR verlinkt.
 - [ ] PR bei grüner CI gemergt; anschliessender Lauf auf `main` grün.
@@ -78,9 +79,14 @@ vor dem Merge auch dessen vollständigen grünen Lauf abwarten.
 
 ## Belege (nach Durchführung ergänzen)
 
-- Pipeline-PR: ausstehend
-- Demo-PR: ausstehend
-- Roter Lauf und Commit: ausstehend
+- Pipeline-PR: [#9](https://github.com/larscoo/ShelfOps/pull/9), grün gemergt.
+- Erster grüner Lauf auf `main`: [36026595602](https://github.com/larscoo/ShelfOps/actions/runs/36026595602).
+- Demo-PR: [#10](https://github.com/larscoo/ShelfOps/pull/10).
+- Roter Lauf: [36027305862](https://github.com/larscoo/ShelfOps/actions/runs/36027305862),
+  Commit `72cffeac5ae958aa1f905e3f3b7575f1c8f8764d`.
+  Lint fehlgeschlagen, Tests erfolgreich, Build übersprungen;
+  GitHub meldet `mergeStateStatus: BLOCKED`.
+- [Screenshot: roter Pflichtcheck und gesperrter Merge](cools-ci-rot.png), visuell geprüft.
 - Grüner Lauf und Commit: ausstehend
 - Grüner Lauf auf `main`: ausstehend
 

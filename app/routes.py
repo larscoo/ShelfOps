@@ -1,6 +1,5 @@
 """HTTP routes for books, members and physical copies."""
 
-import os
 from dataclasses import asdict
 
 from flask import Blueprint, current_app, jsonify, render_template, request

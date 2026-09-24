@@ -35,5 +35,5 @@ def test_page_displays_member_names_and_book_references_safely(client):
     assert "<script>member</script>" not in response.text
     assert "&lt;b&gt;Book&lt;/b&gt;" in response.text
     assert "<b>Book</b>" not in response.text
-    assert "Buch #1 · Verfügbar" in response.text
+    assert 'Buch #1 · <span class="status-available">Verfügbar</span>' in response.text
     assert 'name="book_id" required disabled' not in response.text

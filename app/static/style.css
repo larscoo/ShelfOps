@@ -55,6 +55,11 @@ footer { border-top: 1px solid var(--line); display: flex; justify-content: spac
 nav { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 nav a { color: var(--accent); font-size: 13px; text-underline-offset: 4px; }
 select:disabled { background: #f6f7f1; }
+.status-overdue { color: #a02525 !important; font-weight: 650; }
+.status-on_loan { color: #815016; }
+.status-available { color: var(--accent); }
+.return-form { margin-top: 14px; }
+.loan-list li > div { width: 100%; }
 @media (max-width: 700px) {
   .header { flex-wrap: wrap; }
   .header, main, footer { padding: 20px; }

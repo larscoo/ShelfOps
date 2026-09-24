@@ -14,13 +14,14 @@
         <a href="#books">Bücher</a>
         <a href="#copies">Exemplare</a>
         <a href="#members">Mitglieder</a>
+        <a href="#loans">Ausleihen</a>
       </nav>
     </header>
     <main>
       <div class="intro">
         <p class="eyebrow">DEINE BIBLIOTHEK</p>
         <h1>Platz für die nächste Geschichte.</h1>
-        <p>Bücher, Exemplare und Mitglieder an einem Ort.</p>
+        <p>Bücher, Mitglieder und Ausleihen an einem Ort.</p>
       </div>
       <div class="layout" id="books">
         <section class="card" aria-labelledby="add-heading">
@@ -86,7 +87,7 @@
             <li>
               <span class="book-number">#{{ copy.id }}</span>
               <div><h3>{{ books_by_id[copy.book_id].title }}</h3>
-                <p>Buch #{{ copy.book_id }} · Verfügbar</p></div>
+                <p>Buch #{{ copy.book_id }} · <span class="status-{{ copy.status }}">{{ status_labels[copy.status] }}</span></p></div>
             </li>
             {% endfor %}
           </ul>
@@ -113,6 +114,60 @@
           <ul id="member-list" class="book-list">
             {% for member in members %}
             <li><span class="book-number">#{{ member.id }}</span><div><h3>{{ member.name }}</h3></div></li>
+            {% endfor %}
+          </ul>
+        </section>
+      </div>
+      <div class="layout collection-section" id="loans">
+        <section class="card" aria-labelledby="loan-heading">
+          <h2 id="loan-heading">Exemplar ausleihen</h2>
+          <p class="hint">Die Ausleihfrist beträgt 28 Tage.</p>
+          <form id="loan-form" action="{{ url_for('api.create_loan') }}" method="post">
+            <label for="loan-copy">Verfügbares Exemplar</label>
+            <select id="loan-copy" name="copy_id" required {% if not available_copies %}disabled{% endif %}>
+              <option value="">Bitte ein Exemplar wählen</option>
+              {% for copy in available_copies %}
+              <option value="{{ copy.id }}">Exemplar #{{ copy.id }} · {{ books_by_id[copy.book_id].title }}</option>
+              {% endfor %}
+            </select>
+            <label for="loan-member">Mitglied</label>
+            <select id="loan-member" name="member_id" required {% if not members %}disabled{% endif %}>
+              <option value="">Bitte ein Mitglied wählen</option>
+              {% for member in members %}
+              <option value="{{ member.id }}">#{{ member.id }} · {{ member.name }}</option>
+              {% endfor %}
+            </select>
+            <p id="loan-hint" class="hint" {% if available_copies and members %}hidden{% endif %}>Du benötigst ein verfügbares Exemplar und ein Mitglied.</p>
+            <button type="submit" disabled>Ausleihen</button>
+          </form>
+          <p id="loan-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+        </section>
+        <section class="card catalog" aria-labelledby="loans-heading">
+          <div class="catalog-header">
+            <h2 id="loans-heading">Ausleihen und Rückgaben</h2>
+            <span class="count" aria-label="Anzahl Ausleihen">{{ loans|length }}</span>
+          </div>
+          <p class="hint">Zeiten in UTC. Seite neu laden, um den aktuellen Fälligkeitsstatus zu sehen.</p>
+          {% if not loans %}<p class="hint">Noch keine Ausleihen erfasst.</p>{% endif %}
+          <ul class="book-list loan-list">
+            {% for loan in loans %}
+            <li>
+              <div>
+                <h3>Ausleihe #{{ loan.id }} · {{ books_by_id[copies_by_id[loan.copy_id].book_id].title }}</h3>
+                <p>Exemplar #{{ loan.copy_id }} · {{ members_by_id[loan.member_id].name }} (#{{ loan.member_id }})</p>
+                <p>Ausgeliehen: {{ loan.loaned_at.strftime('%d.%m.%Y %H:%M:%S') }} UTC</p>
+                <p>Fällig: {{ loan.due_at.strftime('%d.%m.%Y %H:%M:%S') }} UTC</p>
+                {% if loan.returned_at %}
+                <p>Zurückgegeben: {{ loan.returned_at.strftime('%d.%m.%Y %H:%M:%S') }} UTC</p>
+                {% else %}
+                <p class="status-{{ copies_by_id[loan.copy_id].status }}">{{ status_labels[copies_by_id[loan.copy_id].status] }}</p>
+                <form class="return-form" action="{{ url_for('api.return_loan', loan_id=loan.id) }}" method="post">
+                  <button type="submit" disabled>Exemplar #{{ loan.copy_id }} zurückgeben</button>
+                  <p role="status" aria-live="polite" aria-atomic="true"></p>
+                </form>
+                {% endif %}
+              </div>
+            </li>
             {% endfor %}
           </ul>
         </section>

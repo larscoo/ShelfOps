@@ -9,7 +9,7 @@ description = "Small library API for the CDS212 DevOps project"
 readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"
-dependencies = ["Flask>=3.1,<4"]
+dependencies = ["Flask>=3.1,<4", "gunicorn>=23,<26"]
 
 [project.optional-dependencies]
 dev = [

@@ -5,8 +5,15 @@ from dataclasses import asdict
 from flask import Blueprint, current_app, jsonify, render_template, request
 from werkzeug.exceptions import BadRequest, UnsupportedMediaType
 
-from app.models import ValidationError, validate_book, validate_copy, validate_member
-from app.repository import BookNotFoundError, LibraryRepository
+from app.models import (
+    Loan,
+    ValidationError,
+    validate_book,
+    validate_copy,
+    validate_loan,
+    validate_member,
+)
+from app.repository import CopyUnavailableError, LibraryRepository, RecordNotFoundError
 
 bp = Blueprint("api", __name__)
 
@@ -30,20 +37,39 @@ def invalid_input(error):
     return jsonify(error="invalid_input", message=str(error)), 400
 
 
-@bp.errorhandler(BookNotFoundError)
-def book_not_found(error):
-    return jsonify(error="book_not_found", message=str(error)), 404
+@bp.errorhandler(RecordNotFoundError)
+def record_not_found(error):
+    return jsonify(error=f"{error.entity.lower()}_not_found", message=str(error)), 404
+
+
+@bp.errorhandler(CopyUnavailableError)
+def copy_unavailable(error):
+    return jsonify(error="copy_unavailable", message=str(error)), 409
+
+
+def loan_json(loan: Loan) -> dict:
+    data = asdict(loan)
+    for field in ("loaned_at", "due_at", "returned_at"):
+        data[field] = data[field].isoformat() if data[field] is not None else None
+    return data
 
 
 @bp.get("/")
 def index():
     books = _repo().list_books()
+    members = _repo().list_members()
+    copies = _repo().list_copies()
     return render_template(
         "index.html",
         books=books,
         books_by_id={book.id: book for book in books},
-        members=_repo().list_members(),
-        copies=_repo().list_copies(),
+        members=members,
+        members_by_id={member.id: member for member in members},
+        copies=copies,
+        copies_by_id={copy.id: copy for copy in copies},
+        available_copies=[copy for copy in copies if copy.status == "available"],
+        loans=_repo().list_loans(),
+        status_labels={"available": "Verfügbar", "on_loan": "Ausgeliehen", "overdue": "Überfällig"},
     )
 
 
@@ -76,11 +102,28 @@ def create_member():
 
 @bp.get("/copies")
 def list_copies():
-    # All copies are available until the loans increment adds derived states.
-    return jsonify([asdict(copy) | {"status": "available"} for copy in _repo().list_copies()])
+    return jsonify([asdict(copy) for copy in _repo().list_copies()])
 
 
 @bp.post("/copies")
 def create_copy():
     book_id = validate_copy(request.get_json())
-    return jsonify(asdict(_repo().add_copy(book_id)) | {"status": "available"}), 201
+    return jsonify(asdict(_repo().add_copy(book_id))), 201
+
+
+@bp.get("/loans")
+def list_loans():
+    return jsonify([loan_json(loan) for loan in _repo().list_loans()])
+
+
+@bp.post("/loans")
+def create_loan():
+    copy_id, member_id = validate_loan(request.get_json())
+    return jsonify(loan_json(_repo().add_loan(copy_id, member_id))), 201
+
+
+@bp.post("/loans/<int:loan_id>/return")
+def return_loan(loan_id):
+    if request.get_data():
+        raise ValidationError("Return requests must have an empty body.")
+    return jsonify(loan_json(_repo().return_loan(loan_id)))

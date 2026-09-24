@@ -172,7 +172,11 @@
           </ul>
         </section>
       </div>
+      {% if persistent %}
+      <p class="storage-note">PostgreSQL: Daten werden dauerhaft gespeichert.</p>
+      {% else %}
       <p class="storage-note">Lokaler Demobetrieb: Beim Neustart werden alle erfassten Daten gelöscht.</p>
+      {% endif %}
     </main>
     <footer>ShelfOps <span>CDS212 · FH Graubünden</span></footer>
   </body>

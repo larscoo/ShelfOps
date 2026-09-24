@@ -1,3 +1,5 @@
 include Makefile requirements-dev.txt CONTRIBUTING.md abnahme-checkliste.md
+include Dockerfile .dockerignore docker-compose.yml docker-compose.test.yml .env.example
+recursive-include scripts *.sh
 recursive-include tests *.py
 recursive-include docs *.md

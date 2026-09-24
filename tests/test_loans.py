@@ -5,13 +5,12 @@ from types import SimpleNamespace
 import pytest
 
 from app import create_app
-from app.repository import InMemoryLibraryRepository
 
 
 @pytest.fixture
-def library():
+def library(repository_factory):
     clock = SimpleNamespace(now=datetime(2026, 9, 20, 12, 0, tzinfo=UTC))
-    repo = InMemoryLibraryRepository(clock=lambda: clock.now)
+    repo = repository_factory(clock=lambda: clock.now)
     app = create_app(repository=repo)
     app.config["TESTING"] = True
     client = app.test_client()

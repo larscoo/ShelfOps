@@ -57,13 +57,15 @@ Eine verspätete Rückgabe macht das Exemplar ebenfalls wieder verfügbar.
 
 ## Geplante API
 
-Fünf fachliche Pfade, insgesamt neun HTTP-Operationen
+Sechs fachliche Pfade, insgesamt zehn HTTP-Operationen. Die zusätzliche
+Exemplarstatistik überträgt die Statistikaufgabe aus Woche 4 auf ShelfOps.
 
 | Methode | Pfad | Eingabe / Ergebnis |
 |---|---|---|
 | GET | `/books` | Bücher auflisten |
 | POST | `/books` | `title`, `author`; Buch anlegen |
 | GET | `/copies` | Exemplare mit `book_id` und berechnetem `status` auflisten |
+| GET | `/copies/stats` | `total`, `available`, `on_loan`, `overdue`; die drei Zustände sind disjunkt |
 | POST | `/copies` | `book_id`; Exemplar anlegen |
 | GET | `/members` | Mitglieder auflisten |
 | POST | `/members` | `name`; Mitglied anlegen |

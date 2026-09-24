@@ -2,7 +2,7 @@
 
 Aus der CDS212-Projektvorlage übernommen und für ShelfOps ergänzt (siehe [Quellen und KI-Nutzung](docs/quellen-und-ki.md))
 
-Stand: 20. September 2026
+Stand: 24. September 2026
 
 Vor der Abgabe des Abschlussprojekts selbst zu prüfen. 
 
@@ -39,6 +39,15 @@ veröffentlichten Host-Port liefert HTTP 200 mit `{"status":"ok"}`; Docker melde
 `healthy`. GUI und JavaScript sind erreichbar. `docker stop` beendet Gunicorn
 per SIGTERM mit Exit-Code 0; der temporäre Testcontainer wurde entfernt.
 Start- und Prüfbefehle stehen im [README](README.md#start-im-docker-container).
+
+## Hausaufgabe Woche 04
+
+Woche-04-Ergänzung: [Nachweise und Übertragung auf ShelfOps](abgabe/README.md).
+
+- [x] Statistik im Compose-Container mit PostgreSQL geprüft und Antwort gespeichert.
+- [x] Naives und optimiertes Image gebaut, Grössen gemessen und begründet.
+- [x] Screenshot `abgabe/docker-images.png` ergänzt und beide Image-Grössen geprüft.
+- [ ] Anerkennung der ShelfOps-Übertragung statt der wörtlichen Taskboard-Aufgabe geklärt.
 
 ## CI-Pipeline
 

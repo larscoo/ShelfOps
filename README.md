@@ -12,8 +12,8 @@ nachvollziehbaren Aufbau einer vollständigen DevOps-Kette.
 Der fachliche Kern läuft mit In-Memory oder PostgreSQL 16. Docker Compose
 startet die Anwendung und eine persistente Datenbank. `/health` prüft die
 Liveness ohne Datenbankzugriff; `/ready` prüft den konfigurierten Speicher.
-Die CI-Konfiguration für Woche 5 ist vorbereitet; der erste GitHub-Lauf steht
-noch aus. `/metrics` und Deployment folgen in den späteren Kurswochen.
+Die CI für Woche 5 läuft auf GitHub; Lint, Tests und Docker-Build sind
+Pflichtprüfungen für `main`. `/metrics` und Deployment folgen in späteren Kurswochen.
 
 ## Continuous Integration (Woche 5)
 
@@ -24,9 +24,9 @@ erzwingt mindestens 80 % Coverage und lädt `coverage.xml` als Artefakt hoch.
 Erst wenn beide Jobs erfolgreich sind, baut `Build image` das Docker-Image und
 prüft Nicht-root-Ausführung sowie `/health`. Das Image wird nicht veröffentlicht.
 
-pip nutzt einen Cache auf Basis von `pyproject.toml`. Die Checks sollen als
-Pflichtprüfungen auf `main` eingerichtet werden, sobald sie auf GitHub gelaufen
-sind. Vorgehen und offene Nachweise: [Woche-5-Hausaufgabe](abgabe/woche-05-ci.md).
+pip nutzt einen Cache auf Basis von `pyproject.toml`. Alle drei Checks sind
+Pflichtprüfungen auf `main`; der PR-Branch muss vor dem Merge aktuell sein.
+Vorgehen und offene Nachweise: [Woche-5-Hausaufgabe](abgabe/woche-05-ci.md).
 
 ## Schnellstart mit Compose (Woche 4)
 

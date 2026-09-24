@@ -65,8 +65,8 @@ def test_new_routes_reject_non_json_and_malformed_json(client, path):
     assert client.get(path).json == []
 
 
-def test_concurrent_copy_creation_has_distinct_ids():
-    app = create_app()
+def test_concurrent_copy_creation_has_distinct_ids(repository_factory):
+    app = create_app(repository=repository_factory())
     app.config["TESTING"] = True
     with app.test_client() as client:
         client.post("/books", json={"title": "Book", "author": "Author"})

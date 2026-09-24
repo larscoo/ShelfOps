@@ -1,5 +1,7 @@
 # ShelfOps
 
+[![CI](https://github.com/larscoo/ShelfOps/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/larscoo/ShelfOps/actions/workflows/ci.yml)
+
 ShelfOps ist eine kleine Bibliotheksverwaltung für das Semesterprojekt im Modul
 CDS212 an der FH Graubünden. Bücher mit physischen Exemplaren, Mitglieder,
 Ausleihen und Rückgaben bilden den fachlichen Kern. Das Projekt dient dem
@@ -10,7 +12,21 @@ nachvollziehbaren Aufbau einer vollständigen DevOps-Kette.
 Der fachliche Kern läuft mit In-Memory oder PostgreSQL 16. Docker Compose
 startet die Anwendung und eine persistente Datenbank. `/health` prüft die
 Liveness ohne Datenbankzugriff; `/ready` prüft den konfigurierten Speicher.
-`/metrics`, CI und Deployment folgen in den späteren Kurswochen.
+Die CI-Konfiguration für Woche 5 ist vorbereitet; der erste GitHub-Lauf steht
+noch aus. `/metrics` und Deployment folgen in den späteren Kurswochen.
+
+## Continuous Integration (Woche 5)
+
+`.github/workflows/ci.yml` prüft Pull Requests und Pushes auf `main`.
+`Lint gate (ruff)` prüft Lint und Formatierung. Parallel testet
+`Test (Python 3.12)` beide Speicher mit einer temporären PostgreSQL-16-Datenbank,
+erzwingt mindestens 80 % Coverage und lädt `coverage.xml` als Artefakt hoch.
+Erst wenn beide Jobs erfolgreich sind, baut `Build image` das Docker-Image und
+prüft Nicht-root-Ausführung sowie `/health`. Das Image wird nicht veröffentlicht.
+
+pip nutzt einen Cache auf Basis von `pyproject.toml`. Die Checks sollen als
+Pflichtprüfungen auf `main` eingerichtet werden, sobald sie auf GitHub gelaufen
+sind. Vorgehen und offene Nachweise: [Woche-5-Hausaufgabe](abgabe/woche-05-ci.md).
 
 ## Schnellstart mit Compose (Woche 4)
 

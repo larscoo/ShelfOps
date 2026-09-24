@@ -51,6 +51,9 @@ Woche-04-Ergänzung: [Nachweise und Übertragung auf ShelfOps](abgabe/README.md)
 
 ## CI-Pipeline
 
+Woche-05-Konfiguration vorbereitet; GitHub-Läufe, Pflichtchecks und Rot-Grün-Nachweis
+sind noch offen. Ablauf: [Woche-5-Hausaufgabe](abgabe/woche-05-ci.md).
+
 - [ ] `.github/workflows/ci.yml` läuft bei jedem Pull Request.
 - [ ] Die Pipeline enthält einen Lint-Schritt (`ruff check` und Formatprüfung).
 - [ ] Die Pipeline führt die Tests aus (`pytest`).

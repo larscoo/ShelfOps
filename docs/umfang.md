@@ -37,7 +37,9 @@ Exemplare bestehen. Texte werden an den Rändern getrimmt; leere Texte sind ung�
    überfällige Ausleihe blockiert eine weitere Ausleihe desselben Exemplars.
 5. Bei Rückgabe setzt der Server `returned_at` auf den aktuellen UTC-Zeitpunkt.
    Die Ausleihe bleibt als Historie erhalten; das Exemplar ist wieder verfügbar.
-6. Wiederholung derselben Rückgabe liefert die bereits abgeschlossene Ausleihe
+6. Die Rückgabe-Anfrage hat keinen Request-Body; Rückgabezeitpunkte werden
+   ausschliesslich vom Server gesetzt.
+7. Wiederholung derselben Rückgabe liefert die bereits abgeschlossene Ausleihe
    mit HTTP 200. Das ursprüngliche Rückgabedatum wird nicht überschrieben.
 
 ## Zustand eines Exemplars

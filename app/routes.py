@@ -13,7 +13,12 @@ from app.models import (
     validate_loan,
     validate_member,
 )
-from app.repository import CopyUnavailableError, LibraryRepository, RecordNotFoundError
+from app.repository import (
+    CopyUnavailableError,
+    LibraryRepository,
+    RecordNotFoundError,
+    StorageUnavailableError,
+)
 
 bp = Blueprint("api", __name__)
 
@@ -47,6 +52,11 @@ def copy_unavailable(error):
     return jsonify(error="copy_unavailable", message=str(error)), 409
 
 
+@bp.errorhandler(StorageUnavailableError)
+def storage_unavailable(error):
+    return jsonify(error="storage_unavailable", message="Storage temporarily unavailable."), 503
+
+
 def loan_json(loan: Loan) -> dict:
     data = asdict(loan)
     for field in ("loaned_at", "due_at", "returned_at"):
@@ -62,6 +72,7 @@ def index():
     return render_template(
         "index.html",
         books=books,
+        persistent=_repo().persistent,
         books_by_id={book.id: book for book in books},
         members=members,
         members_by_id={member.id: member for member in members},
@@ -76,6 +87,13 @@ def index():
 @bp.get("/health")
 def health():
     return jsonify(status="ok")
+
+
+@bp.get("/ready")
+def ready():
+    if _repo().healthy():
+        return jsonify(status="ready")
+    return jsonify(status="not_ready"), 503
 
 
 @bp.get("/books")

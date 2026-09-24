@@ -19,7 +19,15 @@ class CopyUnavailableError(Exception):
     """The copy already has an active loan."""
 
 
+class StorageUnavailableError(Exception):
+    """The configured storage cannot currently serve requests."""
+
+
 class LibraryRepository(Protocol):
+    persistent: bool
+
+    def healthy(self) -> bool: ...
+
     def list_books(self) -> list[Book]: ...
 
     def add_book(self, title: str, author: str) -> Book: ...
@@ -40,6 +48,11 @@ class LibraryRepository(Protocol):
 
 
 class InMemoryLibraryRepository:
+    persistent = False
+
+    def healthy(self) -> bool:
+        return True
+
     def __init__(self, clock: Callable[[], datetime] | None = None):
         self._books: list[Book] = []
         self._members: list[Member] = []

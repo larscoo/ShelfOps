@@ -52,7 +52,8 @@ Woche-04-Ergänzung: [Nachweise und Übertragung auf ShelfOps](abgabe/README.md)
 ## CI-Pipeline
 
 GitHub-Läufe und Pflichtchecks sind geprüft. Der rote Demo-Lauf samt Merge-Sperre
-ist dokumentiert; der grüne Demo-Nachweis steht aus.
+und der anschliessende grüne Lauf mit Merge-Freigabe sind dokumentiert.
+Der Abschluss des Demo-PRs steht noch aus.
 Belege: [Woche-5-Hausaufgabe](abgabe/woche-05-ci.md).
 
 - [x] `.github/workflows/ci.yml` läuft bei jedem Pull Request.

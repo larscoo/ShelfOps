@@ -4,7 +4,8 @@
 
 Die Pipeline ist auf GitHub erfolgreich gelaufen und die Pflichtchecks sind
 aktiv. Im Demo-PR ist der rote Lint-Check samt Merge-Sperre nachgewiesen.
-Der absichtliche Import ist lokal wieder entfernt; der grüne Demo-Lauf steht aus.
+Nach Entfernen des absichtlichen Imports sind im selben PR alle drei Checks
+erfolgreich; der Merge ist freigegeben. Beide Zustände sind per Screenshot belegt.
 Die Hausaufgabe wird auf ShelfOps im Repository-Wurzelverzeichnis übertragen.
 Wir testen Python 3.12 entsprechend `requires-python`; die Python-3.11-Matrix aus
 dem separaten Labor ist damit noch nicht erledigt.
@@ -16,7 +17,7 @@ dem separaten Labor ist damit noch nicht erledigt.
 - [x] Erster vollständiger GitHub-Lauf erfolgreich.
 - [x] Pflichtchecks für `main` eingerichtet und geprüft.
 - [x] Demo-PR mit rotem Lint-Check und gesperrtem Merge dokumentiert.
-- [ ] Derselbe PR nach Reparatur grün und mergebar dokumentiert.
+- [x] Derselbe PR nach Reparatur grün und mergebar dokumentiert.
 - [ ] Screenshots im Repository und im PR verlinkt.
 - [ ] PR bei grüner CI gemergt; anschliessender Lauf auf `main` grün.
 
@@ -87,7 +88,10 @@ vor dem Merge auch dessen vollständigen grünen Lauf abwarten.
   Lint fehlgeschlagen, Tests erfolgreich, Build übersprungen;
   GitHub meldet `mergeStateStatus: BLOCKED`.
 - [Screenshot: roter Pflichtcheck und gesperrter Merge](cools-ci-rot.png), visuell geprüft.
-- Grüner Lauf und Commit: ausstehend
+- Grüner Lauf: [36027887756](https://github.com/larscoo/ShelfOps/actions/runs/36027887756),
+  Commit `1365b1b6aec95872aeae5f8ed785598e20a8c83a`.
+  Alle drei Pflichtchecks erfolgreich; GitHub meldet `mergeStateStatus: CLEAN`.
+- [Screenshot: grüne Pflichtchecks und freigegebener Merge](cools-ci-gruen.png), visuell geprüft.
 - Grüner Lauf auf `main`: ausstehend
 
 Die Quellen-/KI-Datei wird wie vereinbart manuell vom Projektverantwortlichen gepflegt.

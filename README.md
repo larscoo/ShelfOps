@@ -7,13 +7,71 @@ nachvollziehbaren Aufbau einer vollständigen DevOps-Kette.
 
 ## Projektstand
 
-Der fachliche Kern läuft lokal: Bücher, physische Exemplare und Mitglieder
-erfassen sowie Ausleihen und Rückgaben verwalten, über JSON-API und
-Browseroberfläche. `/health` prüft die Liveness. Daten liegen pro App-Instanz im
-Arbeitsspeicher und gehen beim Neustart verloren. `/ready`, `/metrics` und
-PostgreSQL folgen noch. Ein Dockerfile ist vorhanden; Compose und CI folgen später.
+Der fachliche Kern läuft mit In-Memory oder PostgreSQL 16. Docker Compose
+startet die Anwendung und eine persistente Datenbank. `/health` prüft die
+Liveness ohne Datenbankzugriff; `/ready` prüft den konfigurierten Speicher.
+`/metrics`, CI und Deployment folgen in den späteren Kurswochen.
 
-## Lokaler Schnellstart
+## Schnellstart mit Compose (Woche 4)
+
+Voraussetzung: Docker Desktop läuft. Im Projektordner einmalig:
+
+```sh
+cp .env.example .env
+docker compose up --build -d --wait
+```
+
+Eine vorhandene `.env` beibehalten und bei Bedarf bearbeiten. Die Beispielwerte
+sind ausschliesslich für den lokalen Demobetrieb. Benutzer, Datenbank und Passwort
+müssen für die zusammengesetzte `DATABASE_URL` URL-tauglich sein; bei eigenen
+lokalen Passwörtern beispielsweise nur zufällige Buchstaben und Ziffern verwenden.
+Keine echten Zugangsdaten einchecken. Die `.env` ist bereits ignoriert.
+
+Falls noch der einzelne Container `shelfops` aus dem vorigen Schritt läuft:
+`docker stop shelfops` ausführen oder `WEB_PORT` in `.env` ändern. Oberfläche:
+`http://localhost:8000` (beziehungsweise der gewählte Port).
+
+```sh
+curl -i http://localhost:8000/health
+curl -i http://localhost:8000/ready
+docker compose ps
+docker compose logs web
+```
+
+`web` wartet auf den Healthcheck von `db`; das benannte Volume `db-data` hält
+PostgreSQL-Daten. Zwei Gunicorn-Worker teilen sich denselben Datenbestand.
+Die Datenbank veröffentlicht keinen Port auf dem Host; nur die App ist lokal
+auf `127.0.0.1` erreichbar. `.env` wird von Compose gelesen, nicht automatisch
+von `make run` oder einem einzelnen `docker run`.
+
+### Persistenz selbst prüfen
+
+1. Im Browser ein Buch, Exemplar und Mitglied anlegen, eine Ausleihe erfassen.
+2. `docker compose down` ausführen.
+3. Mit `docker compose up -d --wait` erneut starten.
+4. Seite neu laden: Daten und Ausleihhistorie müssen noch vorhanden sein.
+
+`down` behält das Volume. **`down -v` löscht die Daten dauerhaft** und gehört
+nicht zu diesem Persistenztest. Das Volume ist an den Compose-Projektnamen
+gebunden; beim Neustart im gleichen Projektordner bleiben. Änderungen von
+DB-Benutzer/Passwort in `.env` ändern keine bereits initialisierten DB-Rollen.
+
+### Datenbankausfall selbst prüfen
+
+```sh
+docker compose stop db
+curl -i http://localhost:8000/health  # 200
+curl -i http://localhost:8000/ready   # 503
+curl -i http://localhost:8000/books   # 503
+docker compose up -d --wait db
+curl -i http://localhost:8000/ready   # wieder 200
+```
+
+Es gibt bei Datenbankfehlern keinen stillen Wechsel auf In-Memory. Bereits
+bestehende Daten bleiben erhalten. Der Docker-Liveness-Healthcheck bleibt bei
+einem DB-Ausfall grün; das ist bewusst von Readiness getrennt.
+
+## Lokaler Start ohne Datenbank
 
 Voraussetzungen: Python 3.12 oder neuer, Git und Make. Im Terminal:
 
@@ -27,9 +85,9 @@ make run
 ```
 
 Der Entwicklungsserver läuft unter `http://127.0.0.1:8000`. Mit `Ctrl+C` stoppen.
-`DATABASE_URL` muss in dieser Version ungesetzt oder leer sein. Bei gesetzter
-Variable bricht der Start mit einer Erklärung ab, statt unbemerkt flüchtige Daten
-zu verwenden. Öffne `http://127.0.0.1:8000` im Browser: Titel und Autor
+`DATABASE_URL` ungesetzt oder leer lassen, um In-Memory zu verwenden.
+Eine gesetzte PostgreSQL-Verbindungsadresse aktiviert die Datenbank.
+Ohne Datenbank gehen die Daten beim Serverneustart verloren. Öffne `http://127.0.0.1:8000` im Browser: Titel und Autor
 eingeben, „Buch hinzufügen“ drücken. Das Buch erscheint direkt im Katalog.
 Im Bereich „Exemplare“ ein Buch auswählen und ein physisches Exemplar anlegen.
 Unter „Mitglieder“ einen erfundenen Namen erfassen. Gleiche Namen sind erlaubt;
@@ -119,6 +177,7 @@ und der aktuellen Zeit berechnet, nicht als unabhängig änderbares Feld gespeic
 |---|---|---|
 | `/` | GET | Browseroberfläche |
 | `/health` | GET | Liveness, ohne Speicherzugriff |
+| `/ready` | GET | Speicher verfügbar: 200; Datenbank nicht bereit: 503 |
 | `/books` | GET / POST | Bücher auflisten / anlegen |
 | `/copies` | GET / POST | Exemplare auflisten / anlegen |
 | `/members` | GET / POST | Mitglieder auflisten / anlegen |
@@ -164,7 +223,25 @@ make lint
 make build
 ```
 
-`make cov` verlangt mindestens 80 % Coverage. `make lint` prüft sowohl Ruff-Regeln
+`make test` läuft ohne Docker; PostgreSQL-Fälle werden ohne `TEST_DATABASE_URL`
+explizit übersprungen. Für die vollständige Prüfung benötigt `make cov` Docker
+Desktop und die aktualisierte virtuelle Umgebung:
+
+```sh
+.venv/bin/python -m pip install -r requirements-dev.txt
+make cov
+```
+
+`make cov` startet automatisch eine eigene PostgreSQL-16-Testdatenbank auf einem
+freien lokalen Port, führt die fachlichen Tests mit beiden Speichern aus und
+entfernt den Testcontainer danach. Die Testdaten liegen nur im RAM (`tmpfs`),
+nicht im Anwendungsvolume. `make test-db` führt dieselben Tests ohne Coverage aus.
+Jeder Datenbanktest erhält ein eigenes Schema. Für eine extern bereitgestellte
+Testdatenbank ist `TEST_DATABASE_URL` möglich; sie muss ausdrücklich
+`shelfops_test` heissen. Diese Variable niemals auf die Anwendungsdatenbank setzen.
+
+Das vollständige Coverage-Gate verlangt mindestens 80 % Abdeckung inklusive
+PostgreSQL-Code. `make lint` prüft sowohl Ruff-Regeln
 als auch die Formatierung. `make build` erzeugt Wheel und Quelldistribution unter
 `dist/`; diese Artefakte werden nicht eingecheckt. `make fmt` formatiert Python.
 Die Tests verwenden eine kontrollierbare Uhr und prüfen Fälligkeitsgrenzen ohne
@@ -184,11 +261,34 @@ Lockfile. Wheel und sdist enthalten keine bereits installierten Abhängigkeiten.
 | `app/__init__.py` | Application Factory: erzeugt eine eigene App mit eigenem Speicher |
 | `app/models.py` | Bücher, Exemplare, Mitglieder und Eingabevalidierung |
 | `app/repository.py` | Speicher-Schnittstelle und In-Memory-Implementierung |
+| `app/postgres.py` | PostgreSQL-Tabellen und transaktionale Speicheroperationen |
+| `docker-compose.yml` | Anwendung und PostgreSQL mit persistentem Volume |
+| `docker-compose.test.yml` | Isolierte kurzlebige Testdatenbank |
 | `app/routes.py` | Übersetzt HTTP-Anfragen in Validierung und Speicherzugriffe |
 | `app/templates/`, `app/static/` | Browseroberfläche mit Jinja, CSS und kleinem JavaScript |
 | `wsgi.py` | Startpunkt für Flask und später einen WSGI-Server |
 | `tests/` | API- und Fehlerfalltests |
 | `pyproject.toml` | Paketmetadaten, Abhängigkeiten, Build- und Prüfkonfiguration |
+
+## Datenbankaufbau
+
+Die Implementierung orientiert sich am Repository-Muster der CDS212-Beispiel-App.
+Jede Operation verwendet eine kurze psycopg-Verbindung mit Transaktion statt
+eines dauerhaften Pools. Für das kleine Projekt vereinfacht das Lebensdauer und
+Wiederverbindung nach Ausfällen; zusätzlicher Verbindungsaufbau kostet etwas Zeit.
+Verbindungsversuche sind auf 3 Sekunden begrenzt, SQL-Statements auf 5 Sekunden.
+
+Die Tabellen entstehen beim ersten Speicherzugriff, nicht beim App-Start.
+Dadurch bleibt `/health` auch bei einer schon beim Start fehlenden DB erreichbar.
+Ein PostgreSQL-Advisory-Lock serialisiert die erstmalige Schema-Erstellung zwischen
+Workern. `CREATE TABLE IF NOT EXISTS` ist noch kein Migrationssystem: spätere
+Schemaänderungen benötigen einen eigenen, dokumentierten Migrationsschritt.
+
+Fremdschlüssel sichern Beziehungen. Eine Transaktion mit Zeilensperre und ein
+partieller eindeutiger Index auf `loans(copy_id) WHERE returned_at IS NULL`
+verhindern doppelte aktive Ausleihen. Rückgaben sperren die betroffene Ausleihe,
+sodass Wiederholungen das Rückgabedatum nicht überschreiben. IDs können in
+PostgreSQL nach zurückgerollten Transaktionen Lücken enthalten.
 
 ## Geplante Nutzung
 
@@ -204,8 +304,8 @@ Die erste Version wird über eine JSON-API und eine kleine Browseroberfläche be
 Eine zweite aktive Ausleihe desselben Exemplars wird abgelehnt. Nach Ablauf
 seiner Frist ist ein noch nicht zurückgegebenes Exemplar überfällig.
 Der vollständige Vertrag steht in [docs/umfang.md](docs/umfang.md).
-Dieser fachliche Ablauf ist mit dem In-Memory-Speicher implementiert.
-Die PostgreSQL-Variante folgt in Woche 4.
+Dieser fachliche Ablauf ist mit In-Memory und PostgreSQL implementiert.
+Die gleichen fachlichen Regeln werden mit beiden Speicherarten geprüft.
 
 ## Ablauf entlang des Kurses
 
@@ -227,6 +327,7 @@ Die PostgreSQL-Variante folgt in Woche 4.
 - [Arbeitsweise und Selbstprüfung](CONTRIBUTING.md)
 - [Abnahme-Checkliste](abnahme-checkliste.md)
 - [Quellen und KI-Nutzung](docs/quellen-und-ki.md)
+- [PostgreSQL-/Compose-Prüfnachweis](docs/nachweise/compose.md)
 
 Deployment-Runbook, Monitoring-Anleitung, C4-Architektur und ADRs entstehen mit den jeweiligen Umsetzungsschritten.
 

@@ -26,9 +26,9 @@ Vor der Abgabe des Abschlussprojekts selbst zu prüfen.
 - [x] `docker run --rm <image> whoami` gibt nicht `root` aus.
 - [x] `docker build .` läuft ohne Fehler durch.
 - [x] `curl localhost:8000/health` liefert im Container `{"status":"ok",...}`.
-- [ ] `docker-compose.yml` definiert die Dienste `web` und `db`.
-- [ ] Nach `down` und erneutem `up` sind Daten dank benanntem Volume erhalten.
-- [ ] `web` startet erst, wenn `db` gesund ist (`condition: service_healthy`).
+- [x] `docker-compose.yml` definiert die Dienste `web` und `db`.
+- [x] Nach `down` und erneutem `up` sind Daten dank benanntem Volume erhalten.
+- [x] `web` startet erst, wenn `db` gesund ist (`condition: service_healthy`).
 
 Container-Nachweis vom 24.09.2026 (lokal, ARM64):
 `docker build -t shelfops:local .` erfolgreich; Image-ID
@@ -106,8 +106,8 @@ Start- und Prüfbefehle stehen im [README](README.md#start-im-docker-container).
 
 ## Zusätzliche vereinbarte Nachweise
 
-- [ ] Fachliche Szenarien aus [Umfang](docs/umfang.md) in beiden Speichern geprüft.
-- [ ] `/health` funktioniert auch bei Datenbankausfall; `/ready` liefert dann 503.
+- [x] Fachliche Szenarien aus [Umfang](docs/umfang.md) in beiden Speichern geprüft.
+- [x] `/health` funktioniert auch bei Datenbankausfall; `/ready` liefert dann 503.
 - [ ] CI läuft auch bei Pushes auf `main`; fehlgeschlagene Pflichtprüfungen blockieren Merge.
 - [ ] CD wartet auf erfolgreiche Prüfungen des auszuliefernden Commits.
 - [ ] Hosting-Angebote und Datenbankgrenzen vor Einrichtung aktuell geprüft.
@@ -122,3 +122,5 @@ Start- und Prüfbefehle stehen im [README](README.md#start-im-docker-container).
 - [ ] GitHub-Release zu `v1.0.0` nennt Funktionen, Render-URL und Einschränkungen.
 
 Frist: **18. Januar 2027, 12:00 Uhr**.
+
+PostgreSQL-/Compose-Nachweis: [Prüfung vom 24.09.2026](docs/nachweise/compose.md).

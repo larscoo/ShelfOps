@@ -21,14 +21,24 @@ Vor der Abgabe des Abschlussprojekts selbst zu prüfen.
 
 ## Containerisierung
 
-- [ ] `Dockerfile` verwendet einen Multi-Stage-Build.
-- [ ] Das Runtime-Image enthält keine Build-Tools oder pip-Caches.
-- [ ] `docker run --rm <image> whoami` gibt nicht `root` aus.
-- [ ] `docker build .` läuft ohne Fehler durch.
-- [ ] `curl localhost:8000/health` liefert im Container `{"status":"ok",...}`.
+- [x] `Dockerfile` verwendet einen Multi-Stage-Build.
+- [x] Das Runtime-Image enthält keine Build-Tools oder pip-Caches.
+- [x] `docker run --rm <image> whoami` gibt nicht `root` aus.
+- [x] `docker build .` läuft ohne Fehler durch.
+- [x] `curl localhost:8000/health` liefert im Container `{"status":"ok",...}`.
 - [ ] `docker-compose.yml` definiert die Dienste `web` und `db`.
 - [ ] Nach `down` und erneutem `up` sind Daten dank benanntem Volume erhalten.
 - [ ] `web` startet erst, wenn `db` gesund ist (`condition: service_healthy`).
+
+Container-Nachweis vom 24.09.2026 (lokal, ARM64):
+`docker build -t shelfops:local .` erfolgreich; Image-ID
+`sha256:754c23e375c5f75e0704a0776e5d78241e52b6f0f694dc31dc87ea72310356e4`.
+`whoami` liefert `appuser`, UID 10001. Compiler (`gcc`, `cc`), `make`,
+Test-/Build-Pakete und pip-Cache sind nicht vorhanden. `/health` über den
+veröffentlichten Host-Port liefert HTTP 200 mit `{"status":"ok"}`; Docker meldet
+`healthy`. GUI und JavaScript sind erreichbar. `docker stop` beendet Gunicorn
+per SIGTERM mit Exit-Code 0; der temporäre Testcontainer wurde entfernt.
+Start- und Prüfbefehle stehen im [README](README.md#start-im-docker-container).
 
 ## CI-Pipeline
 

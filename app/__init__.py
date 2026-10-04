@@ -16,6 +16,8 @@ def create_app(repository: LibraryRepository | None = None) -> Flask:
             PostgresLibraryRepository(database_url) if database_url else InMemoryLibraryRepository()
         )
     app = Flask(__name__)
+    app.config["APP_VERSION"] = os.environ.get("APP_VERSION", "0.1.0")
+    app.config["APP_COMMIT"] = os.environ.get("RENDER_GIT_COMMIT", "unknown")
     app.extensions["library_repository"] = repository
     app.register_blueprint(bp)
     return app

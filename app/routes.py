@@ -86,7 +86,11 @@ def index():
 
 @bp.get("/health")
 def health():
-    return jsonify(status="ok")
+    return jsonify(
+        status="ok",
+        version=current_app.config["APP_VERSION"],
+        commit=current_app.config["APP_COMMIT"],
+    )
 
 
 @bp.get("/ready")

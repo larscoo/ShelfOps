@@ -9,13 +9,15 @@ services:
     dockerfilePath: ./Dockerfile
     dockerContext: .
     healthCheckPath: /health
-    # Wait for CI. Step 10 will switch this to off when using a deploy hook.
-    autoDeployTrigger: checksPass
+    # GitHub Actions triggers the deploy hook after successful CI.
+    autoDeployTrigger: "off"
     envVars:
       - key: PORT
         value: "8000"
       # Without DATABASE_URL, every worker would have its own in-memory data.
       - key: GUNICORN_WORKERS
         value: "1"
+      - key: APP_VERSION
+        value: "1.0.0"
     # No database or disk: this lab instance uses volatile in-memory storage.
-    # APP_VERSION and LOG_LEVEL are not yet consumed by ShelfOps.
+    # RENDER_GIT_COMMIT is supplied automatically by Render. LOG_LEVEL is unused.

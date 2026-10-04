@@ -13,7 +13,16 @@ def test_health_without_storage_access():
     client = create_app(repository=UnavailableRepository()).test_client()
     response = client.get("/health")
     assert response.status_code == 200
-    assert response.json == {"status": "ok"}
+    assert response.json == {"status": "ok", "version": "0.1.0", "commit": "unknown"}
+
+
+def test_health_reports_deployed_version_without_database(monkeypatch):
+    monkeypatch.setenv("APP_VERSION", "1.0.0")
+    monkeypatch.setenv("RENDER_GIT_COMMIT", "a" * 40)
+    monkeypatch.setenv("DATABASE_URL", "postgresql://127.0.0.1:1/unavailable")
+    response = create_app().test_client().get("/health")
+    assert response.status_code == 200
+    assert response.json == {"status": "ok", "version": "1.0.0", "commit": "a" * 40}
 
 
 def test_database_configuration_does_not_silently_use_memory(monkeypatch):

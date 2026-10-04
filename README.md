@@ -14,7 +14,8 @@ startet die Anwendung und eine persistente Datenbank. `/health` prüft die
 Liveness ohne Datenbankzugriff; `/ready` prüft den konfigurierten Speicher.
 Die CI für Woche 5 läuft auf GitHub; Lint, Tests und Docker-Build sind
 Pflichtprüfungen für `main`. Die App läuft auf Render; der CI-gesteuerte
-CD-Workflow ist vorbereitet und muss noch auf GitHub geprüft werden.
+CD-Workflow ist auf GitHub erfolgreich gelaufen. Der aktuelle Blueprint-Service,
+sein Deploy Hook und die Smoke-Test-URL sind abgeglichen.
 `/metrics` folgt in einer späteren Kurswoche.
 
 ## Continuous Integration (Woche 5)
@@ -184,20 +185,14 @@ Dienstes verglichen werden.
 
 Für Schritt 10 steht `autoDeployTrigger` auf `off`: GitHub Actions löst den
 Deploy Hook nach grüner CI aus. `APP_VERSION=1.0.0` wird in `/health` angezeigt;
-`LOG_LEVEL` wird nicht ausgewertet. Der laufende, manuell konfigurierte Service
-muss diese Einstellungen ebenfalls im Dashboard erhalten; allein die Datei
-ändert dort keine Einstellungen.
+`LOG_LEVEL` wird nicht ausgewertet. Der aktuelle Dienst wird über den Blueprint
+verwaltet; Konfigurationsänderungen erfolgen über die versionierte Datei.
 
-Nach Commit, PR und Merge unter Render **New + → Blueprint** das Repository
-`larscoo/ShelfOps`, Branch `main` und Datei `render.yaml` auswählen. In der
-Vorschau Service, Free-Plan, Region, Docker-Pfade und Healthcheck prüfen und
-einen Screenshot als `abgabe/render-blueprint.png` sichern.
-Die serverseitige Blueprint-Prüfung ist noch ausstehend.
-
-Für dieses Labor genügt die Vorschau: **nicht Apply/Deploy bestätigen**.
-Der vorhandene, manuell eingerichtete Dienst bleibt bestehen. Das blosse
-Committen der Datei übernimmt ihn nicht in eine Blueprint-Verwaltung.
-Die Datei selbst enthält keine Secrets.
+Der Projektverantwortliche hat die früheren Dienste entfernt und am 04.10.2026
+den Blueprint `exs-db19pf942hec73emj8rg` angelegt. Dessen Service
+`srv-db19pnid0e5s73ep7isg` ist unter https://shelfops.onrender.com erreichbar.
+Eine erneute Neuanlage ist nicht nötig. Für einen eigenen Nachbau beschreibt
+[DEPLOYMENT.md](DEPLOYMENT.md) den vollständigen Blueprint-Hauptpfad.
 
 Referenzen (geprüft am 04.10.2026):
 [Blueprint-Spezifikation](https://render.com/docs/blueprint-spec),
@@ -269,9 +264,11 @@ Nach dem Merge prüfen:
 3. Render Events zeigt einen durch den Hook ausgelösten Deploy desselben Commits.
 4. Der CD-Schritt endet mit `SMOKE TEST PASSED`; `/health` meldet dieselbe SHA.
 
-Erster echter CD-Lauf und Render-Nachweis sind noch offen. Ein lokaler Test des
-Skripts ersetzt sie nicht. Deploy Hook und automatische Deployments wurden bei
-der Vorbereitung nicht ausgelöst.
+Die frühere Abweichung zwischen Hook-Ziel und Smoke-Test-URL ist behoben.
+[CD-Lauf 37225622868](https://github.com/larscoo/ShelfOps/actions/runs/37225622868)
+und der Live-Deploy `dep-db19tcnavr4c73aunf80` wurden gegen denselben aktuellen
+Service abgeglichen. Ein Code-Rollback und die Wiederherstellung wurden ebenfalls
+erprobt. Runbook und Nachweise: [DEPLOYMENT.md](DEPLOYMENT.md).
 
 Lokale Vorprüfung am 04.10.2026: 214 Tests bestanden, 3 PostgreSQL-spezifische
 Fälle für In-Memory übersprungen, Coverage 98,42 %; Ruff und YAML-/Shell-Syntax

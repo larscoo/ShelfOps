@@ -66,11 +66,15 @@ Belege: [Woche-5-Hausaufgabe](abgabe/woche-05-ci.md).
 
 ## CD und Deployment
 
-- [ ] `render.yaml` beschreibt den Dienst auf Render.
-- [ ] Die Anwendung ist unter einer öffentlichen Render-URL erreichbar.
-- [ ] `GET /health` liefert auf Render `200`.
+- [x] `render.yaml` beschreibt den Dienst auf Render.
+- [x] Die Anwendung ist unter einer öffentlichen Render-URL erreichbar.
+- [x] `GET /health` liefert auf Render `200`.
 - [ ] Ein Merge auf `main` löst automatisch ein neues Deployment aus.
-- [ ] `DEPLOYMENT.md` beschreibt Deployment, Rollback und Störungsbehandlung.
+- [x] `DEPLOYMENT.md` beschreibt Deployment, Rollback und Störungsbehandlung.
+
+Hook und Smoke-Test-Ziel sind für den neuen Blueprint-Service abgeglichen.
+Code-Rollback mit Wiederherstellung erfolgreich erprobt. Der vollständige
+Neuaufbau durch eine fachfremde Person bleibt offen; siehe [Runbook](DEPLOYMENT.md).
 
 ## Infrastructure as Code
 
@@ -125,7 +129,8 @@ Belege: [Woche-5-Hausaufgabe](abgabe/woche-05-ci.md).
 - [ ] CI läuft auch bei Pushes auf `main`; fehlgeschlagene Pflichtprüfungen blockieren Merge.
 - [ ] CD wartet auf erfolgreiche Prüfungen des auszuliefernden Commits.
 - [ ] Hosting-Angebote und Datenbankgrenzen vor Einrichtung aktuell geprüft.
-- [ ] Rollback tatsächlich erprobt und dokumentiert.
+- [x] Rollback tatsächlich erprobt und dokumentiert (früheren Commit neu deployt,
+      aktuellen Stand wiederhergestellt; kein Artefakt-/Datenbank-Restore).
 - [ ] Terraform verwaltet den eigenen App-Container; Outputs und Variablen dokumentiert.
 - [ ] Erneuter Terraform-Plan nach Apply zeigt keine Änderungen (Idempotenz).
 - [ ] Rolling Update unter laufenden Anfragen ohne beobachteten Ausfall nachgewiesen.

@@ -171,6 +171,35 @@ Anwendungscode in den Build-Kontext. `.git`, `.venv`, Tests, `.env` und lokale
 Build-Artefakte bleiben draussen. Es gibt keinen Bind-Mount: Änderungen am Code
 werden erst nach erneutem Build und Containerstart sichtbar.
 
+## Render-Blueprint (Woche 6, Schritt 9)
+
+`render.yaml` im Repository-Wurzelverzeichnis beschreibt einen Docker-Web-Service
+namens `shelfops`: Free-Instanz in Frankfurt, Branch `main`, Build-Kontext `.`,
+Dockerfile `./Dockerfile`, Healthcheck `/health`, `PORT=8000` und ein Worker.
+Ohne `DATABASE_URL` sind Daten flüchtig; es wird keine Datenbank angelegt.
+Die Region entspricht der Laborvorlage und muss mit der Region des vorhandenen
+Dienstes verglichen werden.
+
+Abweichungen zur Kursvorlage: `autoDeployTrigger: checksPass` wartet auf die
+CI-Prüfungen. `APP_VERSION` und `LOG_LEVEL` sind weggelassen, weil ShelfOps diese
+Variablen noch nicht auswertet. Die Versionsanzeige aus Laborschritt 4 bleibt
+damit offen. Beim Deploy Hook in Schritt 10 wird Auto-Deploy auf `off` umgestellt.
+
+Nach Commit, PR und Merge unter Render **New + → Blueprint** das Repository
+`larscoo/ShelfOps`, Branch `main` und Datei `render.yaml` auswählen. In der
+Vorschau Service, Free-Plan, Region, Docker-Pfade und Healthcheck prüfen und
+einen Screenshot als `abgabe/render-blueprint.png` sichern.
+Die serverseitige Blueprint-Prüfung ist noch ausstehend.
+
+Für dieses Labor genügt die Vorschau: **nicht Apply/Deploy bestätigen**.
+Der vorhandene, manuell eingerichtete Dienst bleibt bestehen. Das blosse
+Committen der Datei übernimmt ihn nicht in eine Blueprint-Verwaltung.
+Die Datei selbst enthält keine Secrets.
+
+Referenzen (geprüft am 04.10.2026):
+[Blueprint-Spezifikation](https://render.com/docs/blueprint-spec),
+[Free-Tier-Grenzen](https://render.com/docs/free).
+
 ## Smoke-Test einer laufenden Instanz (Woche 6)
 
 Das an das Kursskript angelehnte Skript benötigt Bash, curl und Python 3.

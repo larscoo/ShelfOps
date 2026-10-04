@@ -171,6 +171,36 @@ Anwendungscode in den Build-Kontext. `.git`, `.venv`, Tests, `.env` und lokale
 Build-Artefakte bleiben draussen. Es gibt keinen Bind-Mount: Änderungen am Code
 werden erst nach erneutem Build und Containerstart sichtbar.
 
+## Smoke-Test einer laufenden Instanz (Woche 6)
+
+Das an das Kursskript angelehnte Skript benötigt Bash, curl und Python 3.
+Im ShelfOps-Wurzelverzeichnis ausführen und die Beispiel-URL ersetzen:
+
+```sh
+chmod +x scripts/smoke-test.sh
+./scripts/smoke-test.sh https://DEINE-APP.onrender.com
+```
+
+Es prüft `/health` (mit Wiederholungen für einen Cold Start), `/ready`, das
+Anlegen und Lesen eines Buchs, Exemplars und Mitglieds sowie Ausleihe und
+Rückgabe. Dabei werden die tatsächlichen IDs verwendet; die Datenbank muss
+nicht leer sein. Nur wenn alle HTTP- und JSON-Prüfungen erfolgreich sind,
+erscheint `SMOKE TEST PASSED` und das Skript endet mit Exit-Code 0.
+Fehlgeschlagene Prüfungen liefern Exit-Code 1, ungültige Aufrufe Exit-Code 2.
+
+**Testdaten bleiben erhalten:** Pro Lauf entstehen ein Buch, ein Exemplar,
+ein Mitglied und eine zurückgegebene Ausleihe. Namen beginnen mit `smoke-test-`.
+ShelfOps hat keine Lösch-API. Bei einem Abbruch nach dem Ausleihen kann die
+Ausleihe offen bleiben; die ausgegebene ID hilft bei der Rückgabe über die GUI.
+Schreibende Anfragen werden nicht automatisch wiederholt.
+
+Bei Bedarf `PYTHON=/pfad/zu/python3` setzen. `HEALTH_RETRIES` (Standard 12)
+und `BACKOFF_SECONDS` (Standard 5) steuern die Startversuche; zwischen ihnen
+wächst die Wartezeit linear. Jeder HTTP-Aufruf hat ein Zeitlimit von 60 Sekunden.
+Lokal sind Tests etwa gegen `http://127.0.0.1:8000` möglich. Ohne Datenbank
+muss die Zielinstanz mit einem Worker laufen. Das Skript prüft die Funktion,
+aber noch nicht, ob eine bestimmte Deployment-Version aktiv ist.
+
 ## Mitglieder und Exemplare
 
 Die IDs aus der jeweiligen Antwort für weitere Aufrufe verwenden. Dieses

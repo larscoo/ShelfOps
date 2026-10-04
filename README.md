@@ -13,7 +13,9 @@ Der fachliche Kern läuft mit In-Memory oder PostgreSQL 16. Docker Compose
 startet die Anwendung und eine persistente Datenbank. `/health` prüft die
 Liveness ohne Datenbankzugriff; `/ready` prüft den konfigurierten Speicher.
 Die CI für Woche 5 läuft auf GitHub; Lint, Tests und Docker-Build sind
-Pflichtprüfungen für `main`. `/metrics` und Deployment folgen in späteren Kurswochen.
+Pflichtprüfungen für `main`. Die App läuft auf Render; der CI-gesteuerte
+CD-Workflow ist vorbereitet und muss noch auf GitHub geprüft werden.
+`/metrics` folgt in einer späteren Kurswoche.
 
 ## Continuous Integration (Woche 5)
 
@@ -180,10 +182,11 @@ Ohne `DATABASE_URL` sind Daten flüchtig; es wird keine Datenbank angelegt.
 Die Region entspricht der Laborvorlage und muss mit der Region des vorhandenen
 Dienstes verglichen werden.
 
-Abweichungen zur Kursvorlage: `autoDeployTrigger: checksPass` wartet auf die
-CI-Prüfungen. `APP_VERSION` und `LOG_LEVEL` sind weggelassen, weil ShelfOps diese
-Variablen noch nicht auswertet. Die Versionsanzeige aus Laborschritt 4 bleibt
-damit offen. Beim Deploy Hook in Schritt 10 wird Auto-Deploy auf `off` umgestellt.
+Für Schritt 10 steht `autoDeployTrigger` auf `off`: GitHub Actions löst den
+Deploy Hook nach grüner CI aus. `APP_VERSION=1.0.0` wird in `/health` angezeigt;
+`LOG_LEVEL` wird nicht ausgewertet. Der laufende, manuell konfigurierte Service
+muss diese Einstellungen ebenfalls im Dashboard erhalten; allein die Datei
+ändert dort keine Einstellungen.
 
 Nach Commit, PR und Merge unter Render **New + → Blueprint** das Repository
 `larscoo/ShelfOps`, Branch `main` und Datei `render.yaml` auswählen. In der
@@ -228,7 +231,60 @@ und `BACKOFF_SECONDS` (Standard 5) steuern die Startversuche; zwischen ihnen
 wächst die Wartezeit linear. Jeder HTTP-Aufruf hat ein Zeitlimit von 60 Sekunden.
 Lokal sind Tests etwa gegen `http://127.0.0.1:8000` möglich. Ohne Datenbank
 muss die Zielinstanz mit einem Worker laufen. Das Skript prüft die Funktion,
-aber noch nicht, ob eine bestimmte Deployment-Version aktiv ist.
+mit `EXPECTED_COMMIT=<vollständige Commit-SHA>` zusätzlich, ob genau dieser
+Commit in `/health` erscheint. Erst danach werden Testdaten angelegt.
+Ohne diese Variable bleibt der manuelle Funktionstest unverändert.
+
+## Continuous Deployment (Woche 6, Schritt 10)
+
+`.github/workflows/cd.yml` wartet auf erfolgreiche `CI`-Läufe für Pushes auf
+`main`. PR-Läufe lösen keine Deployments aus. Auch ein manueller Start über
+**Actions → CD → Run workflow → main** verlangt einen erfolgreichen Push-CI-Lauf
+für denselben Commit. Veraltete Commits werden vor dem Hook-Aufruf abgelehnt.
+Gleichzeitige CD-Läufe werden serialisiert.
+
+Voraussetzungen in GitHub unter **Settings → Secrets and variables → Actions**:
+
+- Secret `RENDER_DEPLOY_HOOK`: vollständige geheime Hook-URL aus Render.
+- Variable `APP_URL`: öffentliche Basis-URL, hier `https://shelfops.onrender.com`.
+
+Im bestehenden Render-Service **Auto-Deploy abschalten** und `APP_VERSION=1.0.0`
+setzen, falls noch nicht vorhanden. `PORT=8000`, `GUNICORN_WORKERS=1` und
+Healthcheck `/health` beibehalten. Die Hook-URL nicht in Dateien oder Logs kopieren.
+
+Der Workflow checkt den geprüften Commit aus und übergibt seine SHA als `ref`
+an den Hook. `/health` meldet neben `status` und `version` den `commit` aus
+Renders Variable `RENDER_GIT_COMMIT` (lokal ohne diese Variable: `unknown`).
+Eine alte, noch gesunde Instanz genügt nicht: Der Smoke-Test wartet zunächst auf
+den erwarteten Commit und prüft anschliessend den vollständigen Bibliotheksablauf.
+Das erste Deployment dieses Workflows führt diese zusätzliche Health-Angabe ein.
+Der Job ist auf 25 Minuten begrenzt; ein Fehler erfordert Prüfung der Render-Events.
+Ein neuerer Push während eines laufenden Deployments wird durch den nächsten
+CI/CD-Lauf bearbeitet. Der bereits gestartete Hook wird nicht abgebrochen.
+
+Nach dem Merge prüfen:
+
+1. CI für den Merge-Commit auf `main` ist grün.
+2. Der anschliessende CD-Lauf zeigt einen akzeptierten Hook-Aufruf.
+3. Render Events zeigt einen durch den Hook ausgelösten Deploy desselben Commits.
+4. Der CD-Schritt endet mit `SMOKE TEST PASSED`; `/health` meldet dieselbe SHA.
+
+Erster echter CD-Lauf und Render-Nachweis sind noch offen. Ein lokaler Test des
+Skripts ersetzt sie nicht. Deploy Hook und automatische Deployments wurden bei
+der Vorbereitung nicht ausgelöst.
+
+Lokale Vorprüfung am 04.10.2026: 214 Tests bestanden, 3 PostgreSQL-spezifische
+Fälle für In-Memory übersprungen, Coverage 98,42 %; Ruff und YAML-/Shell-Syntax
+erfolgreich. Gegen temporäre lokale Server geprüft: erwarteter Commit erscheint
+verzögert (Erfolg), dauerhaft alter Commit (Abbruch ohne Schreibzugriff),
+manueller Test ohne Commit-Vorgabe (Erfolg). Mit simulierten Antworten geprüft:
+veralteter Commit oder fehlende/rote CI wird abgelehnt; Hook-HTTP 200/202 wird
+akzeptiert und 401 abgelehnt.
+
+Quellen zur Umsetzung:
+[Render Deploy Hooks](https://render.com/docs/deploy-hooks),
+[Render-Umgebungsvariablen](https://render.com/docs/environment-variables),
+[GitHub workflow_run](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_run).
 
 ## Mitglieder und Exemplare
 

@@ -14,6 +14,8 @@ from app.repository import InMemoryLibraryRepository
 @pytest.fixture(autouse=True)
 def clear_database_url(monkeypatch):
     monkeypatch.delenv("DATABASE_URL", raising=False)
+    monkeypatch.delenv("APP_VERSION", raising=False)
+    monkeypatch.delenv("RENDER_GIT_COMMIT", raising=False)
 
 
 @pytest.fixture(params=["memory", "postgres"])

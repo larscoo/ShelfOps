@@ -17,6 +17,11 @@ esac
 PYTHON="${PYTHON:-python3}"
 HEALTH_RETRIES="${HEALTH_RETRIES:-12}"
 BACKOFF_SECONDS="${BACKOFF_SECONDS:-5}"
+EXPECTED_COMMIT="${EXPECTED_COMMIT:-}"
+if [ -n "$EXPECTED_COMMIT" ] && ! [[ "$EXPECTED_COMMIT" =~ ^[0-9a-f]{40}$ ]]; then
+  echo "EXPECTED_COMMIT must be a full lowercase Git commit SHA." >&2
+  exit 2
+fi
 for value in "$HEALTH_RETRIES" "$BACKOFF_SECONDS"; do
   case "$value" in
     ''|*[!0-9]*) echo "Retry settings must be whole numbers." >&2; exit 2 ;;
@@ -96,9 +101,12 @@ echo "== 1/5 waiting for /health (tolerates a cold start) =="
 healthy=0
 for ((attempt=1; attempt<=HEALTH_RETRIES; attempt++)); do
   if request GET /health && [ "$STATUS" = 200 ] && check_json 0 status '"ok"'; then
-    echo "  /health OK (attempt $attempt): $BODY"
-    healthy=1
-    break
+    if [ -z "$EXPECTED_COMMIT" ] || check_json 0 commit "\"$EXPECTED_COMMIT\""; then
+      echo "  /health OK (attempt $attempt): $BODY"
+      healthy=1
+      break
+    fi
+    echo "  Healthy instance has not reported the expected commit yet."
   fi
   if [ "$attempt" -lt "$HEALTH_RETRIES" ]; then
     wait_for=$((BACKOFF_SECONDS * attempt))
@@ -106,7 +114,7 @@ for ((attempt=1; attempt<=HEALTH_RETRIES; attempt++)); do
     sleep "$wait_for"
   fi
 done
-[ "$healthy" -eq 1 ] || fail "/health did not become healthy"
+[ "$healthy" -eq 1 ] || fail "/health did not become healthy with the expected commit"
 
 echo "== 2/5 checking /ready =="
 request GET /ready || fail "GET /ready request failed"

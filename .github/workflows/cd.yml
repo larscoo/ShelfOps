@@ -1,0 +1,104 @@
+# Adapted from CDS212 week 6: deploy hook followed by the ShelfOps smoke test.
+name: CD
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: cd-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_run' &&
+       github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      DEPLOY_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+      APP_URL: ${{ vars.APP_URL }}
+    steps:
+      - name: Verify current main and successful CI
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          current_main=$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq .sha)
+          if [ "$DEPLOY_SHA" != "$current_main" ]; then
+            echo "Refusing an outdated deployment: main has a newer commit."
+            exit 1
+          fi
+          conclusion=$(gh api --method GET \
+            "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/runs" \
+            -f branch=main -f event=push -f head_sha="$DEPLOY_SHA" -f per_page=1 \
+            --jq '.workflow_runs[0].conclusion // "missing"')
+          if [ "$conclusion" != success ]; then
+            echo "The latest push CI for this exact commit must be successful (also for manual CD)."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ env.DEPLOY_SHA }}
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Validate public application URL
+        run: |
+          python - <<'PY'
+          import os
+          from urllib.parse import urlsplit
+          url = urlsplit(os.environ["APP_URL"])
+          if (url.scheme != "https" or not url.hostname or url.username or url.password
+              or url.query or url.fragment or url.path not in ("", "/")):
+              raise SystemExit("APP_URL must be a public HTTPS base URL without credentials or query parameters.")
+          PY
+
+      - name: Trigger Render deploy for the tested commit
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          set -euo pipefail
+          if [ -z "$RENDER_DEPLOY_HOOK" ]; then
+            echo "RENDER_DEPLOY_HOOK is missing."
+            exit 1
+          fi
+          # No verbose output, URL logging or retries for this mutating request.
+          # -G puts ref in the query string; -X POST keeps the HTTP method POST.
+          status=$(curl --silent --connect-timeout 10 --max-time 60 \
+            --get --request POST --data-urlencode "ref=$DEPLOY_SHA" \
+            --output "$RUNNER_TEMP/render-deploy.json" --write-out '%{http_code}' \
+            "$RENDER_DEPLOY_HOOK") || { echo "Deploy hook request failed."; exit 1; }
+          case "$status" in
+            200) echo "Render accepted the deployment (HTTP $status)." ;;
+            202) echo "Deployment queued; waiting for the expected commit."; exit 0 ;;
+            *) echo "Render rejected the deployment (HTTP $status)."; exit 1 ;;
+          esac
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          response = json.loads((Path(os.environ["RUNNER_TEMP"]) / "render-deploy.json").read_text())
+          deploy_id = response.get("deploy", {}).get("id") or response.get("id")
+          print(f"Deploy ID: {deploy_id}" if deploy_id else "Deployment queued; waiting for the expected commit.")
+          PY
+
+      - name: Wait for expected commit and smoke-test the service
+        env:
+          EXPECTED_COMMIT: ${{ env.DEPLOY_SHA }}
+          HEALTH_RETRIES: "18"
+          BACKOFF_SECONDS: "3"
+        run: bash scripts/smoke-test.sh "$APP_URL"

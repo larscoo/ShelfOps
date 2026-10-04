@@ -1,0 +1,14 @@
+Target: https://shelfops.onrender.com
+This test creates a book, copy, member and loan; records remain after the test.
+== 1/5 waiting for /health (tolerates a cold start) ==
+  /health OK (attempt 1): {"commit":"8f81b7c98e92d8de3b7c7e31a3bc80e3780fca2a","status":"ok","version":"1.0.0"}
+
+== 2/5 checking /ready ==
+== 3/5 creating and reading book, copy and member ==
+  created book=1 copy=1 member=1 (smoke-test-20261004T185106Z-84091-24197)
+== 4/5 borrowing the copy and checking its status ==
+  created loan=1; if this test aborts, this loan may remain open.
+== 5/5 returning the copy and checking its status ==
+  returned loan=1; copy=1 is available again.
+
+SMOKE TEST PASSED

@@ -17,12 +17,17 @@ resource "docker_image" "nginx" {
 }
 
 resource "docker_container" "web" {
-  name  = "shelfops-week07-nginx"
+  for_each = {
+    eins = var.host_port
+    zwei = var.second_host_port
+  }
+
+  name  = "shelfops-week07-nginx-${each.key}"
   image = docker_image.nginx.image_id
 
   ports {
     internal = 80
-    external = var.host_port
+    external = each.value
     ip       = "127.0.0.1"
   }
 
@@ -30,5 +35,12 @@ resource "docker_container" "web" {
     host_path      = "${abspath(path.module)}/index.html"
     container_path = "/usr/share/nginx/html/index.html"
     read_only      = true
+  }
+
+  lifecycle {
+    precondition {
+      condition     = var.host_port != var.second_host_port
+      error_message = "Die beiden nginx-Instanzen müssen unterschiedliche Host-Ports verwenden."
+    }
   }
 }

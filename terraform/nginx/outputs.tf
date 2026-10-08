@@ -1,4 +1,7 @@
-output "app_url" {
-  description = "URL der lokalen nginx-Übungsseite."
-  value       = "http://localhost:${var.host_port}"
+output "app_urls" {
+  description = "URLs der beiden lokalen nginx-Instanzen."
+  value = {
+    for name, container in docker_container.web :
+    name => "http://localhost:${one(container.ports).external}"
+  }
 }

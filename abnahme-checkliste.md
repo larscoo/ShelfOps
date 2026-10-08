@@ -97,6 +97,11 @@ Labor vom 08.10.2026: [Anleitung, Grenzen und Prüfgrundlage](terraform/README.m
 
 Konfiguration und Anleitung: [terraform/nginx](terraform/nginx/README.md).
 
+- [x] Bonus: Zwei nginx-Instanzen via `for_each` auf unterschiedlichen Ports erstellt.
+- [x] Bonus: Beide URLs ausgegeben und per HTTP geprüft; Plan danach ohne Änderungen.
+- [x] Bonus: Gleiche Host-Ports werden vor dem Anwenden abgelehnt.
+- [ ] Bonus: Beide Übungscontainer nach der Browser-Prüfung aufgeräumt.
+
 ## Kubernetes
 
 - [ ] Manifeste für Namespace, Deployment und Service liegen unter `k8s/`.

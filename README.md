@@ -459,6 +459,7 @@ Die gleichen fachlichen Regeln werden mit beiden Speicherarten geprüft.
 - [Abnahme-Checkliste](abnahme-checkliste.md)
 - [Quellen und KI-Nutzung](docs/quellen-und-ki.md)
 - [PostgreSQL-/Compose-Prüfnachweis](docs/nachweise/compose.md)
+- [Lokaler Betrieb mit Terraform](terraform/README.md)
 
 Deployment-Runbook, Monitoring-Anleitung, C4-Architektur und ADRs entstehen mit den jeweiligen Umsetzungsschritten.
 

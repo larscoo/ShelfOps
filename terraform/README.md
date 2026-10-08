@@ -87,4 +87,5 @@ Bei der Abschlussprüfung waren `fmt -check` und `validate` erfolgreich,
 der State leer und die Git-Ausnahmen wirksam.
 
 Dies dokumentiert das auf ShelfOps übertragene Labor. Die separate
-Woche-7-Hausaufgabe mit nginx und eigener HTML-Seite ist damit noch nicht erledigt.
+[Woche-7-Hausaufgabe mit nginx und eigener HTML-Seite](nginx/README.md) liegt
+im Unterverzeichnis `nginx/` und verwendet einen eigenen Terraform-State.

@@ -86,6 +86,17 @@ Neuaufbau durch eine fachfremde Person bleibt offen; siehe [Runbook](DEPLOYMENT.
 
 Labor vom 08.10.2026: [Anleitung, Grenzen und Prüfgrundlage](terraform/README.md).
 
+### Hausaufgabe Woche 07
+
+- [x] Separate nginx-Konfiguration mit eigener HTML-Seite und schreibgeschütztem Bind-Mount.
+- [x] Numerische Port-Variable mit Validierung und vollständige URL als Output.
+- [x] `init`, `fmt -check`, `validate`, `apply` und HTTP-Abruf erfolgreich geprüft.
+- [x] Port 80 wird abgelehnt; erneuter Plan nach Apply meldet `No changes`.
+- [x] Screenshot des Erstellungsplans als `terraform/plan-screenshot.png` abgelegt.
+- [x] nginx-Übungscontainer nach der Prüfung mit `terraform destroy` entfernt; State leer.
+
+Konfiguration und Anleitung: [terraform/nginx](terraform/nginx/README.md).
+
 ## Kubernetes
 
 - [ ] Manifeste für Namespace, Deployment und Service liegen unter `k8s/`.

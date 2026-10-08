@@ -78,11 +78,13 @@ Neuaufbau durch eine fachfremde Person bleibt offen; siehe [Runbook](DEPLOYMENT.
 
 ## Infrastructure as Code
 
-- [ ] Terraform-Konfiguration nutzt den Provider `kreuzwerker/docker`.
-- [ ] `terraform init` und `terraform validate` laufen fehlerfrei.
-- [ ] `terraform apply` startet den Container, `terraform destroy` entfernt ihn.
-- [ ] Konfiguration nutzt Variablen statt hartkodierter Werte.
-- [ ] `terraform.tfstate` und `.terraform/` stehen in `.gitignore`.
+- [x] Terraform-Konfiguration nutzt den Provider `kreuzwerker/docker`.
+- [x] `terraform init` und `terraform validate` laufen fehlerfrei.
+- [x] `terraform apply` startet den Container, `terraform destroy` entfernt ihn.
+- [x] Konfiguration nutzt Variablen statt hartkodierter Werte.
+- [x] `terraform.tfstate` und `.terraform/` stehen in `.gitignore`.
+
+Labor vom 08.10.2026: [Anleitung, Grenzen und Prüfgrundlage](terraform/README.md).
 
 ## Kubernetes
 
@@ -131,8 +133,8 @@ Neuaufbau durch eine fachfremde Person bleibt offen; siehe [Runbook](DEPLOYMENT.
 - [ ] Hosting-Angebote und Datenbankgrenzen vor Einrichtung aktuell geprüft.
 - [x] Rollback tatsächlich erprobt und dokumentiert (früheren Commit neu deployt,
       aktuellen Stand wiederhergestellt; kein Artefakt-/Datenbank-Restore).
-- [ ] Terraform verwaltet den eigenen App-Container; Outputs und Variablen dokumentiert.
-- [ ] Erneuter Terraform-Plan nach Apply zeigt keine Änderungen (Idempotenz).
+- [x] Terraform verwaltet den eigenen App-Container; Outputs und Variablen dokumentiert.
+- [x] Erneuter Terraform-Plan nach Apply zeigt keine Änderungen (Idempotenz).
 - [ ] Rolling Update unter laufenden Anfragen ohne beobachteten Ausfall nachgewiesen.
 - [ ] Kubernetes-Replikate verwenden dieselbe Datenbank; Resource-Limits gesetzt.
 - [ ] Dashboard „ShelfOps Overview“ zeigt Veränderungen unter Testlast.

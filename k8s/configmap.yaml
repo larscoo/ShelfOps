@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shelfops-config
+  namespace: shelfops
+data:
+  APP_VERSION: "2.0.0"
+  GUNICORN_WORKERS: "1"

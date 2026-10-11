@@ -1,0 +1,66 @@
+deployment.apps/shelfops 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+
+deployment.apps/shelfops with revision #1
+Pod Template:
+  Labels:	app=shelfops
+	pod-template-hash=894865fdd
+  Containers:
+   shelfops:
+    Image:	shelfops:k8s-v1
+    Port:	8000/TCP (http)
+    Host Port:	0/TCP (http)
+    SeccompProfile:	RuntimeDefault
+    Limits:
+      cpu:	500m
+      memory:	256Mi
+    Requests:
+      cpu:	100m
+      memory:	128Mi
+    Liveness:	http-get http://:http/health delay=5s timeout=2s period=10s #success=1 #failure=3
+    Readiness:	http-get http://:http/ready delay=3s timeout=2s period=5s #success=1 #failure=3
+    Environment Variables from:
+      shelfops-config	ConfigMap	Optional: false
+    Environment:	<none>
+    Mounts:
+      /tmp from tmp (rw)
+  Volumes:
+   tmp:
+    Type:	EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:	
+    SizeLimit:	<unset>
+  Node-Selectors:	<none>
+  Tolerations:	<none>
+
+2026-10-11T18:08:24+0200 ROLLBACK START
+configmap/shelfops-config patched
+Warning: resource deployments/shelfops was previously managed with 'kubectl apply'. Rolling back will not update the kubectl.kubernetes.io/last-applied-configuration annotation, which may cause unexpected behavior on future 'kubectl apply' operations. Consider using 'kubectl apply' with your previous configuration file instead.
+deployment.apps/shelfops rolled back
+Waiting for deployment "shelfops" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "shelfops" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "shelfops" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "shelfops" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "shelfops" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "shelfops" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "shelfops" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "shelfops" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "shelfops" rollout to finish: 1 old replicas are pending termination...
+deployment "shelfops" successfully rolled out
+2026-10-11T18:08:42+0200 ROLLBACK ENDE
+shelfops:k8s-v1
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    53  100    53    0     0  13510      0 --:--:-- --:--:-- --:--:-- 17666
+{"commit":"unknown","status":"ok","version":"1.0.0"}
+
+NAME                       READY   STATUS    RESTARTS   AGE   IP           NODE               NOMINATED NODE   READINESS GATES
+shelfops-894865fdd-7llcz   1/1     Running   0          26s   10.244.1.6   shelfops-worker    <none>           <none>
+shelfops-894865fdd-lphcn   1/1     Running   0          38s   10.244.1.5   shelfops-worker    <none>           <none>
+shelfops-894865fdd-xjdgj   1/1     Running   0          32s   10.244.2.5   shelfops-worker2   <none>           <none>
+deployment.apps/shelfops 
+REVISION  CHANGE-CAUSE
+2         <none>
+3         <none>
+

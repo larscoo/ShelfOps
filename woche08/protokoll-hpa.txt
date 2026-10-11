@@ -1,0 +1,1098 @@
+2026-10-11T18:27:57+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         3          35s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   1m           46Mi            
+shelfops-894865fdd-v79wl   2m           46Mi            
+shelfops-894865fdd-x2c4w   2m           46Mi            
+2026-10-11T18:28:03+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         3          41s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   1m           46Mi            
+shelfops-894865fdd-v79wl   2m           46Mi            
+shelfops-894865fdd-x2c4w   2m           46Mi            
+2026-10-11T18:28:08+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         3          46s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   1m           46Mi            
+shelfops-894865fdd-v79wl   2m           46Mi            
+shelfops-894865fdd-x2c4w   2m           46Mi            
+2026-10-11T18:28:13+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         3          51s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   1m           46Mi            
+shelfops-894865fdd-v79wl   2m           46Mi            
+shelfops-894865fdd-x2c4w   1m           46Mi            
+2026-10-11T18:28:18+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         3          56s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   1m           46Mi            
+shelfops-894865fdd-v79wl   2m           46Mi            
+shelfops-894865fdd-x2c4w   1m           46Mi            
+2026-10-11T18:28:23+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         3          61s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   1m           46Mi            
+shelfops-894865fdd-v79wl   2m           46Mi            
+shelfops-894865fdd-x2c4w   1m           46Mi            
+2026-10-11T18:28:28+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         3          66s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   5m           46Mi            
+shelfops-894865fdd-v79wl   2m           46Mi            
+shelfops-894865fdd-x2c4w   1m           46Mi            
+2026-10-11T18:28:33+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         3          71s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   5m           46Mi            
+shelfops-894865fdd-v79wl   2m           46Mi            
+shelfops-894865fdd-x2c4w   1m           46Mi            
+2026-10-11T18:28:38+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         3          76s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   74m          47Mi            
+shelfops-894865fdd-v79wl   26m          47Mi            
+shelfops-894865fdd-x2c4w   70m          47Mi            
+2026-10-11T18:28:44+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         3          82s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   74m          47Mi            
+shelfops-894865fdd-v79wl   26m          47Mi            
+shelfops-894865fdd-x2c4w   70m          47Mi            
+2026-10-11T18:28:49+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         3          87s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   74m          47Mi            
+shelfops-894865fdd-v79wl   26m          47Mi            
+shelfops-894865fdd-x2c4w   70m          47Mi            
+2026-10-11T18:28:54+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 56%/70%   2         5         3          92s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   74m          47Mi            
+shelfops-894865fdd-v79wl   101m         49Mi            
+shelfops-894865fdd-x2c4w   90m          48Mi            
+2026-10-11T18:28:59+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 56%/70%   2         5         3          97s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   74m          47Mi            
+shelfops-894865fdd-v79wl   101m         49Mi            
+shelfops-894865fdd-x2c4w   90m          48Mi            
+2026-10-11T18:29:04+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 56%/70%   2         5         3          102s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   74m          47Mi            
+shelfops-894865fdd-v79wl   101m         49Mi            
+shelfops-894865fdd-x2c4w   90m          48Mi            
+2026-10-11T18:29:09+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 88%/70%   2         5         3          107s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   94m          49Mi            
+shelfops-894865fdd-v79wl   82m          48Mi            
+shelfops-894865fdd-x2c4w   83m          48Mi            
+2026-10-11T18:29:14+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 88%/70%   2         5         3          112s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   94m          49Mi            
+shelfops-894865fdd-v79wl   82m          48Mi            
+shelfops-894865fdd-x2c4w   83m          48Mi            
+2026-10-11T18:29:19+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 88%/70%   2         5         3          117s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   94m          49Mi            
+shelfops-894865fdd-v79wl   82m          48Mi            
+shelfops-894865fdd-x2c4w   83m          48Mi            
+2026-10-11T18:29:24+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 86%/70%   2         5         4          2m2s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   43m          47Mi            
+shelfops-894865fdd-v79wl   82m          48Mi            
+shelfops-894865fdd-w62p2   55m          45Mi            
+shelfops-894865fdd-x2c4w   83m          48Mi            
+2026-10-11T18:29:29+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 86%/70%   2         5         4          2m8s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   43m          47Mi            
+shelfops-894865fdd-v79wl   82m          48Mi            
+shelfops-894865fdd-w62p2   55m          45Mi            
+shelfops-894865fdd-x2c4w   83m          48Mi            
+2026-10-11T18:29:35+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 86%/70%   2         5         4          2m13s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   43m          47Mi            
+shelfops-894865fdd-v79wl   82m          48Mi            
+shelfops-894865fdd-w62p2   55m          45Mi            
+shelfops-894865fdd-x2c4w   83m          48Mi            
+2026-10-11T18:29:40+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 69%/70%   2         5         4          2m18s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   37m          49Mi            
+shelfops-894865fdd-v79wl   24m          49Mi            
+shelfops-894865fdd-w62p2   26m          46Mi            
+shelfops-894865fdd-x2c4w   16m          47Mi            
+2026-10-11T18:29:45+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 69%/70%   2         5         4          2m23s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   37m          49Mi            
+shelfops-894865fdd-v79wl   24m          49Mi            
+shelfops-894865fdd-w62p2   26m          46Mi            
+shelfops-894865fdd-x2c4w   16m          47Mi            
+2026-10-11T18:29:50+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 69%/70%   2         5         4          2m28s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   37m          49Mi            
+shelfops-894865fdd-v79wl   24m          49Mi            
+shelfops-894865fdd-w62p2   26m          46Mi            
+shelfops-894865fdd-x2c4w   16m          47Mi            
+2026-10-11T18:29:55+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 25%/70%   2         5         4          2m33s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   80m          47Mi            
+shelfops-894865fdd-v79wl   79m          47Mi            
+shelfops-894865fdd-w62p2   85m          48Mi            
+shelfops-894865fdd-x2c4w   57m          49Mi            
+2026-10-11T18:30:00+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 25%/70%   2         5         4          2m38s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   80m          47Mi            
+shelfops-894865fdd-v79wl   79m          47Mi            
+shelfops-894865fdd-w62p2   85m          48Mi            
+shelfops-894865fdd-x2c4w   57m          49Mi            
+2026-10-11T18:30:05+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 25%/70%   2         5         4          2m43s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   80m          47Mi            
+shelfops-894865fdd-v79wl   79m          47Mi            
+shelfops-894865fdd-w62p2   85m          48Mi            
+shelfops-894865fdd-x2c4w   57m          49Mi            
+2026-10-11T18:30:10+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 75%/70%   2         5         4          2m48s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   58m          49Mi            
+shelfops-894865fdd-v79wl   55m          49Mi            
+shelfops-894865fdd-w62p2   51m          49Mi            
+shelfops-894865fdd-x2c4w   60m          47Mi            
+2026-10-11T18:30:15+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 75%/70%   2         5         4          2m53s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   58m          49Mi            
+shelfops-894865fdd-v79wl   55m          49Mi            
+shelfops-894865fdd-w62p2   51m          49Mi            
+shelfops-894865fdd-x2c4w   60m          47Mi            
+2026-10-11T18:30:20+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 75%/70%   2         5         4          2m59s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   58m          49Mi            
+shelfops-894865fdd-v79wl   55m          49Mi            
+shelfops-894865fdd-w62p2   51m          49Mi            
+shelfops-894865fdd-x2c4w   60m          47Mi            
+2026-10-11T18:30:26+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 56%/70%   2         5         4          3m4s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   27m          47Mi            
+shelfops-894865fdd-v79wl   39m          47Mi            
+shelfops-894865fdd-w62p2   43m          47Mi            
+shelfops-894865fdd-x2c4w   63m          48Mi            
+2026-10-11T18:30:31+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 56%/70%   2         5         4          3m9s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   27m          47Mi            
+shelfops-894865fdd-v79wl   39m          47Mi            
+shelfops-894865fdd-w62p2   43m          47Mi            
+shelfops-894865fdd-x2c4w   63m          48Mi            
+2026-10-11T18:30:36+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 56%/70%   2         5         4          3m14s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   27m          47Mi            
+shelfops-894865fdd-v79wl   39m          47Mi            
+shelfops-894865fdd-w62p2   43m          47Mi            
+shelfops-894865fdd-x2c4w   63m          48Mi            
+2026-10-11T18:30:41+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 43%/70%   2         5         4          3m19s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   14m          48Mi            
+shelfops-894865fdd-v79wl   6m           49Mi            
+shelfops-894865fdd-w62p2   12m          47Mi            
+shelfops-894865fdd-x2c4w   6m           47Mi            
+2026-10-11T18:30:46+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 43%/70%   2         5         4          3m24s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   14m          48Mi            
+shelfops-894865fdd-v79wl   6m           49Mi            
+shelfops-894865fdd-w62p2   12m          47Mi            
+shelfops-894865fdd-x2c4w   6m           47Mi            
+2026-10-11T18:30:51+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 43%/70%   2         5         4          3m29s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   14m          48Mi            
+shelfops-894865fdd-v79wl   6m           49Mi            
+shelfops-894865fdd-w62p2   12m          47Mi            
+shelfops-894865fdd-x2c4w   6m           47Mi            
+2026-10-11T18:30:56+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 9%/70%   2         5         4          3m34s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   14m          48Mi            
+shelfops-894865fdd-v79wl   70m          49Mi            
+shelfops-894865fdd-w62p2   89m          48Mi            
+shelfops-894865fdd-x2c4w   56m          48Mi            
+2026-10-11T18:31:01+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 9%/70%   2         5         4          3m39s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   14m          48Mi            
+shelfops-894865fdd-v79wl   70m          49Mi            
+shelfops-894865fdd-w62p2   89m          48Mi            
+shelfops-894865fdd-x2c4w   56m          48Mi            
+2026-10-11T18:31:06+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 9%/70%   2         5         4          3m44s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   14m          48Mi            
+shelfops-894865fdd-v79wl   70m          49Mi            
+shelfops-894865fdd-w62p2   89m          48Mi            
+shelfops-894865fdd-x2c4w   56m          48Mi            
+2026-10-11T18:31:12+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 57%/70%   2         5         4          3m50s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   77m          48Mi            
+shelfops-894865fdd-v79wl   77m          48Mi            
+shelfops-894865fdd-w62p2   57m          49Mi            
+shelfops-894865fdd-x2c4w   90m          48Mi            
+2026-10-11T18:31:17+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 57%/70%   2         5         4          3m55s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   77m          48Mi            
+shelfops-894865fdd-v79wl   77m          48Mi            
+shelfops-894865fdd-w62p2   57m          49Mi            
+shelfops-894865fdd-x2c4w   90m          48Mi            
+2026-10-11T18:31:22+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 57%/70%   2         5         4          4m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   77m          48Mi            
+shelfops-894865fdd-v79wl   77m          48Mi            
+shelfops-894865fdd-w62p2   57m          49Mi            
+shelfops-894865fdd-x2c4w   90m          48Mi            
+2026-10-11T18:31:27+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 75%/70%   2         5         4          4m5s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   56m          47Mi            
+shelfops-894865fdd-v79wl   60m          49Mi            
+shelfops-894865fdd-w62p2   59m          48Mi            
+shelfops-894865fdd-x2c4w   63m          49Mi            
+2026-10-11T18:31:32+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 75%/70%   2         5         4          4m10s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   56m          47Mi            
+shelfops-894865fdd-v79wl   60m          49Mi            
+shelfops-894865fdd-w62p2   59m          48Mi            
+shelfops-894865fdd-x2c4w   63m          49Mi            
+2026-10-11T18:31:37+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 75%/70%   2         5         4          4m15s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   56m          47Mi            
+shelfops-894865fdd-v79wl   60m          49Mi            
+shelfops-894865fdd-w62p2   59m          48Mi            
+shelfops-894865fdd-x2c4w   63m          49Mi            
+2026-10-11T18:31:42+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 59%/70%   2         5         4          4m20s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   7m           47Mi            
+shelfops-894865fdd-v79wl   21m          48Mi            
+shelfops-894865fdd-w62p2   15m          47Mi            
+shelfops-894865fdd-x2c4w   29m          47Mi            
+2026-10-11T18:31:47+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 59%/70%   2         5         4          4m25s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   7m           47Mi            
+shelfops-894865fdd-v79wl   21m          48Mi            
+shelfops-894865fdd-w62p2   15m          47Mi            
+shelfops-894865fdd-x2c4w   29m          47Mi            
+2026-10-11T18:31:52+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 59%/70%   2         5         4          4m30s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   7m           47Mi            
+shelfops-894865fdd-v79wl   21m          48Mi            
+shelfops-894865fdd-w62p2   15m          47Mi            
+shelfops-894865fdd-x2c4w   29m          47Mi            
+2026-10-11T18:31:58+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 18%/70%   2         5         4          4m36s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   57m          49Mi            
+shelfops-894865fdd-v79wl   59m          49Mi            
+shelfops-894865fdd-w62p2   37m          49Mi            
+shelfops-894865fdd-x2c4w   34m          49Mi            
+2026-10-11T18:32:03+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 18%/70%   2         5         4          4m41s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   57m          49Mi            
+shelfops-894865fdd-v79wl   59m          49Mi            
+shelfops-894865fdd-w62p2   37m          49Mi            
+shelfops-894865fdd-x2c4w   34m          49Mi            
+2026-10-11T18:32:08+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 46%/70%   2         5         4          4m46s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   57m          49Mi            
+shelfops-894865fdd-v79wl   59m          49Mi            
+shelfops-894865fdd-w62p2   37m          49Mi            
+shelfops-894865fdd-x2c4w   34m          49Mi            
+2026-10-11T18:32:13+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 46%/70%   2         5         4          4m51s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   78m          49Mi            
+shelfops-894865fdd-v79wl   83m          49Mi            
+shelfops-894865fdd-w62p2   81m          48Mi            
+shelfops-894865fdd-x2c4w   84m          48Mi            
+2026-10-11T18:32:18+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 46%/70%   2         5         4          4m56s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   78m          49Mi            
+shelfops-894865fdd-v79wl   83m          49Mi            
+shelfops-894865fdd-w62p2   81m          48Mi            
+shelfops-894865fdd-x2c4w   84m          48Mi            
+2026-10-11T18:32:23+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 81%/70%   2         5         4          5m1s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   58m          49Mi            
+shelfops-894865fdd-v79wl   58m          48Mi            
+shelfops-894865fdd-w62p2   58m          49Mi            
+shelfops-894865fdd-x2c4w   59m          49Mi            
+2026-10-11T18:32:28+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 81%/70%   2         5         4          5m7s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   58m          49Mi            
+shelfops-894865fdd-v79wl   58m          48Mi            
+shelfops-894865fdd-w62p2   58m          49Mi            
+shelfops-894865fdd-x2c4w   59m          49Mi            
+2026-10-11T18:32:34+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 81%/70%   2         5         4          5m12s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   58m          49Mi            
+shelfops-894865fdd-v79wl   58m          48Mi            
+shelfops-894865fdd-w62p2   58m          49Mi            
+shelfops-894865fdd-x2c4w   59m          49Mi            
+2026-10-11T18:32:39+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 58%/70%   2         5         5          5m17s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   73m          45Mi            
+shelfops-894865fdd-tmkqn   54m          48Mi            
+shelfops-894865fdd-v79wl   54m          48Mi            
+shelfops-894865fdd-w62p2   55m          48Mi            
+shelfops-894865fdd-x2c4w   52m          49Mi            
+2026-10-11T18:32:44+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 58%/70%   2         5         5          5m22s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   73m          45Mi            
+shelfops-894865fdd-tmkqn   54m          48Mi            
+shelfops-894865fdd-v79wl   54m          48Mi            
+shelfops-894865fdd-w62p2   55m          48Mi            
+shelfops-894865fdd-x2c4w   52m          49Mi            
+2026-10-11T18:32:49+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 58%/70%   2         5         5          5m27s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   73m          45Mi            
+shelfops-894865fdd-tmkqn   54m          48Mi            
+shelfops-894865fdd-v79wl   54m          48Mi            
+shelfops-894865fdd-w62p2   55m          48Mi            
+shelfops-894865fdd-x2c4w   52m          49Mi            
+2026-10-11T18:32:54+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 53%/70%   2         5         5          5m32s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   73m          45Mi            
+shelfops-894865fdd-tmkqn   29m          47Mi            
+shelfops-894865fdd-v79wl   29m          47Mi            
+shelfops-894865fdd-w62p2   28m          47Mi            
+shelfops-894865fdd-x2c4w   29m          48Mi            
+2026-10-11T18:32:59+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 53%/70%   2         5         5          5m37s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   73m          45Mi            
+shelfops-894865fdd-tmkqn   29m          47Mi            
+shelfops-894865fdd-v79wl   29m          47Mi            
+shelfops-894865fdd-w62p2   28m          47Mi            
+shelfops-894865fdd-x2c4w   29m          48Mi            
+2026-10-11T18:33:04+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 53%/70%   2         5         5          5m42s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   73m          45Mi            
+shelfops-894865fdd-tmkqn   29m          47Mi            
+shelfops-894865fdd-v79wl   29m          47Mi            
+shelfops-894865fdd-w62p2   28m          47Mi            
+shelfops-894865fdd-x2c4w   29m          48Mi            
+2026-10-11T18:33:09+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 28%/70%   2         5         5          5m47s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   25m          45Mi            
+shelfops-894865fdd-tmkqn   22m          47Mi            
+shelfops-894865fdd-v79wl   33m          47Mi            
+shelfops-894865fdd-w62p2   41m          47Mi            
+shelfops-894865fdd-x2c4w   29m          48Mi            
+2026-10-11T18:33:15+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 28%/70%   2         5         5          5m53s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   25m          45Mi            
+shelfops-894865fdd-tmkqn   22m          47Mi            
+shelfops-894865fdd-v79wl   33m          47Mi            
+shelfops-894865fdd-w62p2   41m          47Mi            
+shelfops-894865fdd-x2c4w   29m          48Mi            
+2026-10-11T18:33:20+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 28%/70%   2         5         5          5m58s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   25m          45Mi            
+shelfops-894865fdd-tmkqn   22m          47Mi            
+shelfops-894865fdd-v79wl   33m          47Mi            
+shelfops-894865fdd-w62p2   41m          47Mi            
+shelfops-894865fdd-x2c4w   29m          48Mi            
+2026-10-11T18:33:25+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 30%/70%   2         5         5          6m3s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   25m          45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   11m          47Mi            
+2026-10-11T18:33:30+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 30%/70%   2         5         5          6m8s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   25m          45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   11m          47Mi            
+2026-10-11T18:33:35+0200
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 30%/70%   2         5         5          6m13s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   25m          45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   11m          47Mi            
+2026-10-11T18:33:40+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 8%/70%   2         5         5          6m18s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           48Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:33:45+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 8%/70%   2         5         5          6m23s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           48Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:33:50+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 8%/70%   2         5         5          6m29s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           48Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:33:56+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          6m34s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   3m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:34:01+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          6m39s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   3m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:34:06+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          6m44s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   3m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:34:11+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         5          6m49s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:34:16+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         5          6m54s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:34:21+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         5          6m59s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:34:27+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          7m5s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:34:32+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          7m10s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:34:37+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          7m15s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:34:42+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          7m20s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:34:47+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          7m25s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:34:52+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          7m30s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:34:57+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          7m35s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   10m          45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:35:03+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          7m41s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   10m          45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:35:08+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          7m46s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   10m          45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:35:13+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 3%/70%   2         5         5          7m51s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   1m           48Mi            
+2026-10-11T18:35:18+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 3%/70%   2         5         5          7m56s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   1m           48Mi            
+2026-10-11T18:35:23+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          8m1s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:35:29+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          8m7s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:35:34+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          8m12s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:35:39+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          8m17s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   3m           48Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:35:44+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          8m22s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   3m           48Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:35:49+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          8m27s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   3m           48Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:35:54+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         5          8m32s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   1m           48Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:36:00+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         5          8m38s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   1m           48Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:36:05+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         5          8m43s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   1m           48Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:36:10+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          8m48s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:36:15+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          8m53s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:36:20+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          8m58s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:36:25+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          9m3s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:36:30+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          9m8s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:36:35+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          9m14s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:36:41+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          9m19s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:36:46+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          9m24s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:36:51+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          9m29s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:36:56+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          9m34s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           48Mi            
+2026-10-11T18:37:01+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          9m39s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           48Mi            
+2026-10-11T18:37:06+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          9m44s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   1m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           48Mi            
+2026-10-11T18:37:11+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         5          9m50s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   5m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           48Mi            
+2026-10-11T18:37:17+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         5          9m55s
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   5m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           48Mi            
+2026-10-11T18:37:22+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         5          10m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   5m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           48Mi            
+2026-10-11T18:37:27+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         5          10m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:37:32+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         5          10m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:37:37+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         5          10m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:37:42+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          10m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:37:47+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          10m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-l5h86   2m           45Mi            
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:37:52+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         5          10m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:37:58+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         4          10m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:38:03+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         4          10m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-w62p2   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:38:08+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         4          10m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   1m           47Mi            
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:38:13+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         3          10m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:38:18+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         3          10m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:38:23+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         3          11m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:38:29+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         3          11m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:38:34+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         3          11m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-tmkqn   2m           47Mi            
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:38:39+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         2          11m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:38:44+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         2          11m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:38:49+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         2          11m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:38:54+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         2          11m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:38:59+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         2          11m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:39:04+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         2          11m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-x2c4w   1m           47Mi            
+2026-10-11T18:39:10+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         2          11m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:39:15+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         2          11m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:39:20+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 2%/70%   2         5         2          11m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-v79wl   2m           47Mi            
+shelfops-894865fdd-x2c4w   2m           47Mi            
+2026-10-11T18:39:25+0200
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+shelfops   Deployment/shelfops   cpu: 1%/70%   2         5         2          12m
+NAME                       CPU(cores)   MEMORY(bytes)   
+shelfops-894865fdd-v79wl   1m           47Mi            
+shelfops-894865fdd-x2c4w   2m           48Mi            

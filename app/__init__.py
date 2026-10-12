@@ -3,6 +3,8 @@
 import os
 
 from flask import Flask
+from prometheus_client import CollectorRegistry
+from prometheus_flask_exporter import PrometheusMetrics
 
 from app.postgres import PostgresLibraryRepository
 from app.repository import InMemoryLibraryRepository, LibraryRepository
@@ -20,4 +22,10 @@ def create_app(repository: LibraryRepository | None = None) -> Flask:
     app.config["APP_COMMIT"] = os.environ.get("RENDER_GIT_COMMIT", "unknown")
     app.extensions["library_repository"] = repository
     app.register_blueprint(bp)
+    metrics = PrometheusMetrics(app, registry=CollectorRegistry())
+    metrics.info(
+        "shelfops_info",
+        "Application info",
+        version=app.config["APP_VERSION"],
+    )
     return app

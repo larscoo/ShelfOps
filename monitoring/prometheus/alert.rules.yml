@@ -41,3 +41,19 @@ groups:
         annotations:
           summary: "Hohe p95-Antwortzeit bei ShelfOps"
           description: "Die geschätzte p95-Antwortzeit liegt seit fünf Minuten über einer Sekunde."
+
+      - alert: HighClientErrorRate
+        expr: |
+          (
+            sum(rate(flask_http_request_total{job="shelfops",status=~"4.."}[5m]))
+            /
+            sum(rate(flask_http_request_total{job="shelfops"}[5m]))
+          ) > 0.20
+          and
+          sum(increase(flask_http_request_total{job="shelfops"}[5m])) >= 100
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Viele ShelfOps-Anfragen werden mit 4xx abgewiesen"
+          description: "Seit fünf Minuten liegt der 4xx-Anteil über 20 %, bei mindestens 100 erfassten Anfragen im jeweiligen Fünf-Minuten-Fenster."

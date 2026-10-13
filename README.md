@@ -16,7 +16,10 @@ Die CI für Woche 5 läuft auf GitHub; Lint, Tests und Docker-Build sind
 Pflichtprüfungen für `main`. Die App läuft auf Render; der CI-gesteuerte
 CD-Workflow ist auf GitHub erfolgreich gelaufen. Der aktuelle Blueprint-Service,
 sein Deploy Hook und die Smoke-Test-URL sind abgeglichen.
-`/metrics` folgt in einer späteren Kurswoche.
+`/metrics` liefert Prometheus-Metriken. Der lokale Observability-Stack ergänzt
+Prometheus, Grafana und Alarmregeln; das Dashboard und die Scan-Nachweise sind
+versioniert. Architektur und Betriebsgrenzen beschreibt die
+[C4-Übersicht](docs/architektur.md).
 
 ## Continuous Integration (Woche 5)
 
@@ -25,7 +28,11 @@ sein Deploy Hook und die Smoke-Test-URL sind abgeglichen.
 `Test (Python 3.12)` beide Speicher mit einer temporären PostgreSQL-16-Datenbank,
 erzwingt mindestens 80 % Coverage und lädt `coverage.xml` als Artefakt hoch.
 Erst wenn beide Jobs erfolgreich sind, baut `Build image` das Docker-Image und
-prüft Nicht-root-Ausführung sowie `/health`. Das Image wird nicht veröffentlicht.
+prüft Nicht-root-Ausführung sowie `/health`. Anschliessend scannt Trivy das
+Image: HIGH-/CRITICAL-Funde mit verfügbarem Fix lassen den Job fehlschlagen.
+Der Gate-Bericht wird als Artefakt gespeichert; die
+[Schwelle und ihre Grenzen](MONITORING.md) sind dokumentiert.
+Das Image wird nicht veröffentlicht.
 
 pip nutzt einen Cache auf Basis von `pyproject.toml`. Alle drei Checks sind
 Pflichtprüfungen auf `main`; der PR-Branch muss vor dem Merge aktuell sein.
@@ -306,6 +313,7 @@ und der aktuellen Zeit berechnet, nicht als unabhängig änderbares Feld gespeic
 | `/` | GET | Browseroberfläche |
 | `/health` | GET | Liveness, ohne Speicherzugriff |
 | `/ready` | GET | Speicher verfügbar: 200; Datenbank nicht bereit: 503 |
+| `/metrics` | GET | Prometheus-Metriken für HTTP-Anfragen, Antwortzeiten und App-Version |
 | `/books` | GET / POST | Bücher auflisten / anlegen |
 | `/copies` | GET / POST | Exemplare auflisten / anlegen |
 | `/copies/stats` | GET | Gesamtzahl sowie verfügbare, ausgeliehene und überfällige Exemplare |
@@ -460,13 +468,18 @@ Die gleichen fachlichen Regeln werden mit beiden Speicherarten geprüft.
 - [Quellen und KI-Nutzung](docs/quellen-und-ki.md)
 - [PostgreSQL-/Compose-Prüfnachweis](docs/nachweise/compose.md)
 - [Lokaler Betrieb mit Terraform](terraform/README.md)
-
-Deployment-Runbook, Monitoring-Anleitung, C4-Architektur und ADRs entstehen mit den jeweiligen Umsetzungsschritten.
+- [Architektur: C4-Kontext, Container und Betriebsgrenzen](docs/architektur.md)
+- [Deployment und Rollback](DEPLOYMENT.md)
+- [Monitoring, SLOs, Alarmregeln und Trivy](MONITORING.md)
+- [ADR 0001: Speicherstrategie](docs/adr/0001-speicherstrategie.md)
+- [ADR 0002: CI-gesteuertes Render-Deployment](docs/adr/0002-ci-gesteuertes-render-deployment.md)
+- [Kubernetes-Labor starten](k8s/README.md)
 
 ## Mitarbeit und Lizenz
 
 Wir verwenden GitHub Flow: kurze Branches, Pull Requests und dokumentierte
 Selbstprüfung. Direkte Pushes auf `main` sind nicht vorgesehen. Der technische
-Branch-Schutz ist eingerichtet; CI-Pflichtprüfungen folgen mit dem Workflow; Details stehen in [CONTRIBUTING.md](CONTRIBUTING.md).
+Branch-Schutz und CI-Pflichtprüfungen sind eingerichtet; Details stehen in
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
 Das Projekt steht unter der [MIT-Lizenz](LICENSE).

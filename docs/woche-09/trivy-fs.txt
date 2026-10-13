@@ -1,0 +1,43 @@
+
+Report Summary
+
+┌──────────────────┬──────┬─────────────────┐
+│      Target      │ Type │ Vulnerabilities │
+├──────────────────┼──────┼─────────────────┤
+│ requirements.txt │ pip  │        6        │
+└──────────────────┴──────┴─────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+requirements.txt (pip)
+======================
+Total: 6 (UNKNOWN: 0, LOW: 1, MEDIUM: 5, HIGH: 0, CRITICAL: 0)
+
+┌─────────┬────────────────┬──────────┬────────┬───────────────────┬───────────────┬──────────────────────────────────────────────────────────────┐
+│ Library │ Vulnerability  │ Severity │ Status │ Installed Version │ Fixed Version │                            Title                             │
+├─────────┼────────────────┼──────────┼────────┼───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ pip     │ CVE-2025-8869  │ MEDIUM   │ fixed  │ 25.0.1            │ 25.3          │ pip: pip missing checks on symbolic link extraction          │
+│         │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2025-8869                    │
+│         ├────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│         │ CVE-2026-13346 │          │        │                   │ 26.2.0        │ pip: pip: Arbitrary file installation via malicious package  │
+│         │                │          │        │                   │               │ indexes                                                      │
+│         │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-13346                   │
+│         ├────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│         │ CVE-2026-3219  │          │        │                   │ 26.1          │ pip: pip: Incorrect file installation due to improper        │
+│         │                │          │        │                   │               │ archive handling                                             │
+│         │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-3219                    │
+│         ├────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│         │ CVE-2026-6357  │          │        │                   │               │ pip: pip: Arbitrary code execution or information disclosure │
+│         │                │          │        │                   │               │ via malicious wheel package...                               │
+│         │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-6357                    │
+│         ├────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│         │ CVE-2026-8643  │          │        │                   │ 26.1.2        │ python-pip: Path traversal via malicious entry point name in │
+│         │                │          │        │                   │               │ pip wheel installation...                                    │
+│         │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-8643                    │
+│         ├────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│         │ CVE-2026-1703  │ LOW      │        │                   │ 26.0          │ pip: pip: Information disclosure via path traversal when     │
+│         │                │          │        │                   │               │ installing crafted wheel archives...                         │
+│         │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-1703                    │
+└─────────┴────────────────┴──────────┴────────┴───────────────────┴───────────────┴──────────────────────────────────────────────────────────────┘

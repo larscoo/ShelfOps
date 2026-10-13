@@ -488,3 +488,53 @@ Die Anwendungspfade sind in [app/routes.py](app/routes.py), die
 Eingabeprüfungen in [app/models.py](app/models.py) und der Runtime-Benutzer
 im [Dockerfile](Dockerfile) nachvollziehbar.
 
+### Trivy-Gate in der CI (Woche 10)
+
+Der Workflow [ci.yml](.github/workflows/ci.yml) ergänzt den bestehenden
+Job **Build image** um einen Image-Scan nach Build und Smoke-Test.
+Gescannt wird genau das lokal auf dem CI-Runner gebaute Image `shelfops:ci`.
+`docker build --pull` prüft dabei auf eine aktuelle Version des Basisimages.
+
+Die [Trivy-Action v0.36.0](https://github.com/aquasecurity/trivy-action/releases/tag/v0.36.0)
+ist auf den vollständigen Commit-Hash
+`ed142fd0673e97e23eac54620cfb913e5ce36c25` festgelegt; die Scanner-Version
+ist explizit **v0.75.0**. Die Vulnerability-Datenbank wird weiterhin durch
+Trivy aktualisiert. Die verwendeten Eingaben sind in der
+[Action-Definition](https://github.com/aquasecurity/trivy-action/blob/ed142fd0673e97e23eac54620cfb913e5ce36c25/action.yaml)
+beschrieben.
+
+**Gate-Entscheidung:** Mindestens ein HIGH- oder CRITICAL-Treffer mit
+verfügbarem Fix führt zu Exit-Code 1 und einem fehlgeschlagenen Build-Job.
+Dies entspricht `--scanners vuln --severity HIGH,CRITICAL --ignore-unfixed
+--exit-code 1`. Die Schwelle priorisiert schwere, durch Updates behebbare
+Probleme. Ungefixte Schwachstellen sowie MEDIUM-/LOW-Funde werden von diesem
+Gate nicht bewertet und müssen weiterhin über vollständige Scans beobachtet
+werden. Es gibt kein `continue-on-error`; auch technische Scannerfehler
+lassen den Job fehlschlagen.
+
+**Nachweis:** Der gefilterte Bericht `trivy-gate.txt` wird im Job-Log
+ausgegeben und als Artefakt **trivy-gate-report** für 14 Tage aufbewahrt.
+Beide Schritte laufen auch nach einem fehlgeschlagenen Gate, sofern Trivy
+eine Berichtsdatei erzeugt hat. Scheitert bereits die Installation oder der
+Datenbankabruf ohne Bericht, ist die Fehlermeldung im Scan-Schritt massgeblich.
+Das Artefakt enthält nur die Gate-relevanten Funde, keinen vollständigen Scan
+aller Schweregrade.
+
+**Merge und Deployment:** Der Name des bestehenden Pflichtchecks
+`Build image` bleibt erhalten. Ein fehlgeschlagenes Gate verhindert damit
+einen regulären Merge unter den bestehenden Branch-Schutzregeln. Der
+CD-Workflow verlangt auch bei manueller Ausführung einen erfolgreichen
+Push-CI-Lauf für genau den aktuellen `main`-Commit; ein fehlgeschlagenes
+Trivy-Gate verhindert deshalb ebenfalls diesen Deployment-Pfad.
+
+Render baut das Image anschliessend selbst aus dem getesteten Commit.
+Der CI-Scan belegt somit den Zustand des CI-Images, nicht die Identität des
+später auf Render gebauten Images. Veränderliche Basisimage-Tags,
+Abhängigkeitsbereiche und Datenbankstände können zu abweichenden Ergebnissen
+führen. Ebenso sind die lokalen ARM64-Scans aus Woche 9 keine Garantie für
+das Ergebnis auf dem GitHub-Runner.
+
+Die Integration ist zunächst im Workflow definiert. Der erste PR-Lauf muss
+noch nachweisen, dass der Scan ausgeführt und das Artefakt gespeichert wird;
+die lokalen Laborergebnisse ersetzen diesen CI-Nachweis nicht.
+

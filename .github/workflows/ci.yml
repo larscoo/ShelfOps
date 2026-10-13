@@ -67,6 +67,30 @@ jobs:
         with:
           persist-credentials: false
       - name: Build container image
-        run: docker build -t shelfops:ci .
+        run: docker build --pull -t shelfops:ci .
       - name: Smoke-test container
         run: sh scripts/smoke-test-image.sh shelfops:ci
+      - name: Scan image with Trivy (HIGH/CRITICAL with fixes)
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          version: v0.75.0
+          scan-type: image
+          image-ref: shelfops:ci
+          scanners: vuln
+          format: table
+          output: trivy-gate.txt
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+          timeout: 5m0s
+      - name: Show Trivy gate report
+        if: ${{ always() && hashFiles('trivy-gate.txt') != '' }}
+        run: cat trivy-gate.txt
+      - name: Upload Trivy gate report
+        if: ${{ always() && hashFiles('trivy-gate.txt') != '' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: trivy-gate-report
+          path: trivy-gate.txt
+          if-no-files-found: error
+          retention-days: 14

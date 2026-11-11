@@ -120,6 +120,7 @@ Mit `docker compose down` beenden. **Ohne `-v` bleiben die Daten erhalten.**
 | `POSTGRES_DB` | `shelfops` | nein | Lokaler Compose-Datenbankname. |
 | `POSTGRES_PASSWORD` | kein Compose-Standard; lokales Beispiel in `.env.example` | ja, bei echten Zugangsdaten | Für Compose erforderlich, lokal in `.env`; das Beispiel ist kein Produktionspasswort. |
 | `WEB_PORT` | `8000` | nein | Nur der lokale veröffentlichte Compose-Port. |
+| `GRAFANA_ADMIN_PASSWORD` | kein Compose-Standard; lokales Beispiel in `.env.example` | ja | Passwort für den Grafana-Benutzer `admin` bei der ersten Initialisierung des lokalen Monitoring-Stacks. In `.env` setzen; bei bestehendem Grafana-Volume setzt eine Änderung das gespeicherte Passwort nicht automatisch zurück. Siehe [Monitoring-Schnellstart](MONITORING.md#lokalen-monitoring-stack-starten). |
 | `TEST_DATABASE_URL` | nicht gesetzt | ja bei externer DB | Testskript setzt eine temporäre Test-DSN selbst. Ohne Variable werden PostgreSQL-Tests übersprungen; deshalb `make cov` verwenden. |
 | `PYTHON` | Make: `.venv/bin/python`; Smoke-Test: `python3` | nein | Python-Interpreter; bei Bedarf als Pfad überschreiben. |
 | `HEALTH_RETRIES` | manuell `12`; CD `18` | nein | Anzahl Health-/Commit-Prüfungen im Smoke-Test. |

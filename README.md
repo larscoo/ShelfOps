@@ -40,12 +40,22 @@ Vorgehen und offene Nachweise: [Woche-5-Hausaufgabe](abgabe/woche-05-ci.md).
 
 ## Schnellstart mit Compose (Woche 4)
 
-Voraussetzung: Docker Desktop läuft. Im Projektordner einmalig:
+Voraussetzungen: Git sowie Docker Desktop mit Docker Compose. Docker Desktop
+muss laufen. Für einen neuen Klon in einem Arbeitsverzeichnis ausführen:
 
 ```sh
+git clone https://github.com/larscoo/ShelfOps.git
+cd ShelfOps
 cp .env.example .env
 docker compose up --build -d --wait
 ```
+
+Bei einem bereits vorhandenen Klon im Projektwurzelverzeichnis beginnen und
+nur eine fehlende `.env` aus `.env.example` anlegen. Bereits laufende
+Entwicklungsserver oder Monitoring-Stacks auf Port 8000 vorher stoppen.
+Für Prometheus und Grafana statt dieses Stacks den
+[Monitoring-Schnellstart](MONITORING.md#lokalen-monitoring-stack-starten)
+verwenden.
 
 Eine vorhandene `.env` beibehalten und bei Bedarf bearbeiten. Die Beispielwerte
 sind ausschliesslich für den lokalen Demobetrieb. Benutzer, Datenbank und Passwort
@@ -405,7 +415,7 @@ Lockfile. Wheel und sdist enthalten keine bereits installierten Abhängigkeiten.
 | `docker-compose.test.yml` | Isolierte kurzlebige Testdatenbank |
 | `app/routes.py` | Übersetzt HTTP-Anfragen in Validierung und Speicherzugriffe |
 | `app/templates/`, `app/static/` | Browseroberfläche mit Jinja, CSS und kleinem JavaScript |
-| `wsgi.py` | Startpunkt für Flask und später einen WSGI-Server |
+| `wsgi.py` | Startpunkt für Flask und Gunicorn |
 | `tests/` | API- und Fehlerfalltests |
 | `pyproject.toml` | Paketmetadaten, Abhängigkeiten, Build- und Prüfkonfiguration |
 

@@ -190,23 +190,29 @@ Der [Compose-Schnellstart](README.md#schnellstart-mit-compose-woche-4)
 beginnt mit `git clone`. Der
 [Monitoring-Schnellstart](MONITORING.md#lokalen-monitoring-stack-starten)
 beschreibt Konfiguration, Start, URLs, Grafana-Anmeldung, Last und Aufräumen.
-Der praktische Nachweis aus einem frischen Klon allein nach der Dokumentation
-bleibt offen; die ergänzten Anleitungen wurden dafür noch nicht neu ausgeführt.
+Der [Compose-Start aus einem frischen Klon](docs/nachweise/frischer-klon.md)
+wurde am 11.11.2026 erfolgreich geprüft, einschliesslich API-Smoke-Test
+und Persistenz nach `down`/`up`. Der Test wurde durch Codex ausgeführt;
+eine unabhängige kursfremde Person und der Monitoring-Neuaufbau waren nicht
+Teil dieses Prüflaufs.
 
 ## Selbsteinschätzung und Abgabe
 
 - [x] Die Selbsteinschätzung nach dem Bewertungsschema ist ausgefüllt und liegt
-      lokal als [BEWERTUNG.md](BEWERTUNG.md) mit acht Kriterien, Punkten und Belegen vor.
-- [ ] Ein frischer Klon des Repositorys startet allein nach dem README.
+      als [BEWERTUNG.md](BEWERTUNG.md) mit acht Kriterien, Punkten und Belegen vor.
+- [x] Ein frischer Klon des Repositorys startet nach dem Compose-Schnellstart im README
+      ([Prüfnachweis vom 11.11.2026](docs/nachweise/frischer-klon.md)).
 - [x] Quellen- und KI-Deklaration für den bisherigen Arbeitsstand ergänzt.
       [docs/quellen-und-ki.md](docs/quellen-und-ki.md) enthält Einträge bis
       11.11.2026; bei weiteren Arbeiten bis zur Abgabe nachführen.
 - [ ] Tag `v1.0.0` ist gesetzt, Release mit Anmerkungen veröffentlicht.
 
-Die lokal ausgefüllte Selbsteinschätzung und die Dokumentationsänderungen
-müssen noch über Commit und Pull Request in den finalen `main`-Stand
-übernommen werden. Die Haken für vorhandene Texte ersetzen weder diesen
-Schritt noch die weiterhin offenen praktischen Prüfungen.
+Selbsteinschätzung und Dokumentationsänderungen wurden mit
+[PR #24](https://github.com/larscoo/ShelfOps/pull/24) auf `main` übernommen
+(Commit `cbe0cbbc44d967ff75b703254aee1d6ac7753a43`). Der danach erstellte
+Nachweis des frischen Klons muss noch über einen eigenen PR übernommen werden.
+Weitere offene praktische Prüfungen und die Release-Abgabe bleiben davon
+unabhängig.
 
 ## Zusätzliche vereinbarte Nachweise
 

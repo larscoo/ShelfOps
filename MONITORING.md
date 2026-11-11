@@ -1,5 +1,104 @@
 # Monitoring – ShelfOps
 
+## Lokalen Monitoring-Stack starten
+
+Voraussetzungen: Git, laufendes Docker Desktop mit Docker Compose sowie
+Bash und curl für das Lastskript. Der Stack benötigt die freien lokalen
+Ports **8000**, **9090** und **3000**. Falls ShelfOps noch nicht geklont ist,
+zuerst die Klonbefehle im [README](README.md#schnellstart-mit-compose-woche-4)
+ausführen; das dortige Starten des normalen Compose-Stacks überspringen.
+Alle folgenden Befehle im ShelfOps-Wurzelverzeichnis ausführen.
+
+### Konfiguration vorbereiten
+
+Eine vorhandene `.env` beibehalten. Nur wenn sie noch fehlt:
+
+```sh
+cp .env.example .env
+```
+
+In `.env` müssen `POSTGRES_USER`, `POSTGRES_DB`, `POSTGRES_PASSWORD` und
+`GRAFANA_ADMIN_PASSWORD` gesetzt sein. Die Beispielwerte dienen dem lokalen
+Demobetrieb; für Grafana ein eigenes lokales Passwort setzen. Die Datei ist
+von Git ausgeschlossen. Zugangsdaten nicht in Screenshots oder Logs kopieren.
+
+Der normale Compose-Stack und der Monitoring-Stack belegen beide Port 8000.
+Falls der normale Stack läuft, diesen zuerst ohne Löschen der Daten stoppen:
+
+```sh
+docker compose down
+```
+
+Einen mit `make run` gestarteten Entwicklungsserver mit Ctrl+C beenden.
+Der Monitoring-Stack hat durch seinen Projektnamen `shelfops-monitoring`
+eigene Volumes und eine eigene Datenbank. Daten des normalen Compose-Stacks
+werden nicht automatisch übernommen. Die Web-Port-Freigabe ist hier fest
+8000; `WEB_PORT` aus `.env` steuert nur den normalen Compose-Stack.
+
+### Start und Prüfung
+
+```sh
+docker compose -f docker-compose.observability.yml config --quiet
+docker compose -f docker-compose.observability.yml up --build -d --wait
+docker compose -f docker-compose.observability.yml ps
+curl --fail --silent --show-error http://localhost:8000/health
+curl --fail --silent --show-error http://localhost:8000/ready
+curl --fail --silent --show-error http://localhost:8000/metrics \
+  | grep '^shelfops_info'
+```
+
+Erwartet: vier laufende Dienste (`web`, `db`, `prometheus`, `grafana`),
+`db` und nach erfolgreichem Healthcheck `web` healthy. Die HTTP-Prüfungen
+liefern `status: ok` mit Version `1.0.0`, `status: ready` und die Metrik
+`shelfops_info{version="1.0.0"} 1.0`. Der lokale Commit kann `unknown` sein.
+Prometheus und Grafana haben hier keinen eigenen Compose-Healthcheck;
+ihre Erreichbarkeit deshalb zusätzlich im Browser prüfen.
+
+| Oberfläche | URL | Prüfung / Anmeldung |
+| --- | --- | --- |
+| ShelfOps | <http://localhost:8000> | Bibliotheksoberfläche |
+| Prometheus Targets | <http://localhost:9090/targets> | Der Job `shelfops` muss nach dem ersten Scrape UP anzeigen. |
+| Prometheus Alerts | <http://localhost:9090/alerts> | Alarmregeln und deren Zustände anzeigen |
+| Grafana | <http://localhost:3000> | Benutzer `admin`, Passwort aus `GRAFANA_ADMIN_PASSWORD` in `.env` |
+
+Grafana kann beim ersten Start einen Moment benötigen. Unter Dashboards
+**ShelfOps Overview** öffnen; Datenquelle und Dashboard werden automatisch
+provisioniert. Der Admin-Zugang wird bei der ersten Initialisierung angelegt.
+Bei einem vorhandenen Grafana-Volume gilt das dort gespeicherte Passwort;
+eine spätere Änderung der `.env` setzt es nicht automatisch zurück.
+
+### Last erzeugen und Daten ansehen
+
+```sh
+bash scripts/last-erzeugen.sh http://localhost:8000 200
+```
+
+Das Skript erwartet erfolgreiche Lesezugriffe und erzeugt zusätzlich bewusst
+404-Antworten. Prometheus danach 15–30 Sekunden zum Abrufen geben.
+Im Dashboard einen Zeitraum wählen, der den Lastlauf einschliesst,
+beispielsweise **Last 15 minutes**. Request-Rate und Latenz sollten Daten
+zeigen; für `rate()` sind mindestens zwei Scrapes erforderlich. Die
+Abfragen verwenden Fünf-Minuten-Fenster, daher reagieren die Kurven geglättet.
+Der 5xx-Anteil bleibt im fehlerfreien Test bei 0; er ist ohne Verkehr nicht
+sinnvoll auswertbar. Die genaue Interpretation steht in Abschnitt 1.
+
+Bei Start- oder Verbindungsfehlern zunächst die Dienstzustände und Logs prüfen:
+
+```sh
+docker compose -f docker-compose.observability.yml ps
+docker compose -f docker-compose.observability.yml logs --tail 50 web prometheus grafana
+```
+
+### Stoppen und später weiterarbeiten
+
+```sh
+docker compose -f docker-compose.observability.yml down
+```
+
+Die benannten Volumes mit Bibliotheksdaten, Zeitreihen und Grafana-Zustand
+bleiben erhalten. Für einen späteren Start denselben Startbefehl verwenden.
+`down -v` würde diese Daten löschen und gehört nicht zum normalen Aufräumen.
+
 ## 1. Dashboard-Dokumentation
 
 Grundlage ist der lokale Laborlauf vom 12.10.2026 mit App-Version
@@ -534,7 +633,69 @@ Abhängigkeitsbereiche und Datenbankstände können zu abweichenden Ergebnissen
 führen. Ebenso sind die lokalen ARM64-Scans aus Woche 9 keine Garantie für
 das Ergebnis auf dem GitHub-Runner.
 
-Die Integration ist zunächst im Workflow definiert. Der erste PR-Lauf muss
-noch nachweisen, dass der Scan ausgeführt und das Artefakt gespeichert wird;
-die lokalen Laborergebnisse ersetzen diesen CI-Nachweis nicht.
+Die Integration wurde mit [PR #22](https://github.com/larscoo/ShelfOps/pull/22)
+gemergt. Der [Push-CI-Lauf 38409424251](https://github.com/larscoo/ShelfOps/actions/runs/38409424251)
+vom 13.10.2026 führte Trivy, Berichtsausgabe und Artefakt-Upload erfolgreich aus;
+das gefilterte Gate meldete keine Treffer. Anschliessend war auch
+[CD 38409644026](https://github.com/larscoo/ShelfOps/actions/runs/38409644026)
+erfolgreich.
 
+Beim anschliessenden Dokumentationsstand bestätigte
+[CI 38411801620](https://github.com/larscoo/ShelfOps/actions/runs/38411801620)
+den Ablauf erneut. Das Artefakt `trivy-gate-report` wurde bei der
+Abschlussprüfung über die GitHub-API als vorhanden und nicht abgelaufen
+bestätigt. Die Aufbewahrung bleibt auf 14 Tage begrenzt; für die finale
+Abgabe ist ein rechtzeitig gesicherter Bericht des finalen Stands sinnvoll.
+
+
+### Debian-Paketupdates nach erneutem CI-Fund am 11.11.2026
+
+Der [PR-CI-Lauf 43041347355](https://github.com/larscoo/ShelfOps/actions/runs/43041347355)
+für [PR #24](https://github.com/larscoo/ShelfOps/pull/24) scheiterte am
+Trivy-Gate: zwei HIGH-Funde im Debian-Paket `zlib1g`, keine CRITICAL-Funde.
+Installiert war `1:1.3.dfsg+really1.3.1-1+b1`; als Fix nennt der Bericht
+`1:1.3.dfsg+really1.3.1-1+deb13u1`.
+
+Der Debian Security Tracker bestätigt diese Fix-Version für
+[CVE-2026-76844](https://security-tracker.debian.org/tracker/CVE-2026-76844)
+und [CVE-2026-85091](https://security-tracker.debian.org/tracker/CVE-2026-85091).
+Der Berichtstitel zum ersten Fund nennt abweichend `webpack-dev-middleware`;
+für die Paketzuordnung und Korrektur wurde deshalb der Debian-Eintrag geprüft.
+
+Das mit `--pull` bezogene Python-Basisimage enthielt das Paket noch in der
+älteren Version. Das Dockerfile aktualisiert deshalb mit `apt-get update`
+und `apt-get upgrade -y` die bereits installierten Debian-Pakete aus den
+konfigurierten Paketquellen. Der Schritt liegt in der gemeinsamen Basisstufe
+für Builder und Runtime; danach werden die Paketlisten entfernt. So ist
+keine eigene Update-Zeile für jedes betroffene Paket nötig.
+
+**Begründung der Update-Strategie:** Neue Schwachstellen werden laufend
+bekannt, und Debian veröffentlicht regelmässig korrigierte Pakete. Daraus
+folgt jedoch kein tägliches Update für jedes Paket oder für dieses Image.
+Die [Debian-Sicherheitsmeldungen](https://www.debian.org/security/)
+zeigen die jeweiligen Veröffentlichungen; die
+[Security-FAQ](https://www.debian.org/security/faq) beschreibt das Aktualisieren
+betroffener Pakete über APT. Zwischen dem Bau eines Basisimages und unserem
+nächsten Build können bereits weitere Korrekturen verfügbar sein. Ein
+allgemeiner Upgrade-Schritt berücksichtigt diese verfügbaren Paketupdates,
+ohne die Dockerfile-Liste für jeden neuen Fund erweitern zu müssen.
+Ein bisher grüner Scan ist deshalb eine Momentaufnahme. Regelmässige
+Neubauten und erneute Scans bleiben erforderlich; ein bereits laufender
+Container aktualisiert sich durch diesen Build-Schritt nicht automatisch.
+
+Laut [Debian-Handbuch zu apt-get](https://manpages.debian.org/trixie/apt/apt-get.8.en.html)
+behält `upgrade` Pakete zurück, falls deren Update zusätzliche Pakete oder
+Entfernungen erfordern würde. Solche Fälle müssen anhand des Build-Logs und
+des Scans gesondert geprüft werden. Ein Distributionswechsel ist damit nicht
+verbunden. Die Python-Laufzeit unter `/usr/local` stammt weiterhin aus dem
+Python-Basisimage; Python-Abhängigkeiten werden separat anhand der Bereiche
+in `pyproject.toml` installiert. Bei neuen Paketständen können sich Verhalten
+und Image-Grösse ändern, weshalb Smoke-Test und Trivy-Gate weiterhin nötig sind.
+
+Der Upgrade-Schritt läuft bei Ausführung des betreffenden Build-Layers.
+Für einen bewusst frischen lokalen Paketstand mit `--pull --no-cache` bauen,
+damit ein vorhandener Docker-Layer den APT-Schritt nicht überspringt.
+Das HIGH-/CRITICAL-Gate mit `--ignore-unfixed` bleibt unverändert.
+Die erfolgreiche Behebung muss der nächste Build samt Smoke-Test und
+Trivy-Scan noch bestätigen. Die Berichte aus Oktober bleiben historische
+Nachweise und werden nicht überschrieben.

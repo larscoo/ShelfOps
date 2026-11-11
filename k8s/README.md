@@ -49,8 +49,16 @@ keine allgemeine Garantie gegen Anfragefehler.
 
 Im ersten Labortest am 08.10.2026 traten drei Anfragefehler auf. Nach Ergänzen
 des Hooks enthielten die vom Projektverantwortlichen geposteten Tests nur
-HTTP-200-Antworten, auch beim Wechsel von v2 auf v1. Ein vollständiges,
-gespeichertes Rollout-Protokoll für die Hausaufgabe steht noch aus.
+HTTP-200-Antworten, auch beim Wechsel von v2 auf v1. Der spätere
+Hausaufgabenlauf vom 11.10.2026 ist vollständig unter `woche08/` dokumentiert:
+[Anfrageprotokoll](../woche08/protokoll-rollout.txt),
+[Rollout-Status mit Start und Ende](../woche08/protokoll-rollout-status.txt),
+[Rollback](../woche08/protokoll-rollback.txt) und
+[Analyse](../woche08/analyse.md). Die Anfrageaufzeichnung umfasst das
+gesamte dokumentierte Update und enthält nur HTTP 200 mit `curl_exit=0`.
+Die [HPA-Zusatzaufgabe](../woche08/hpa.md) weist Skalierung unter Last und
+nach Lastende nach. Diese Nachweise gelten für die dort versionierten
+Labormanifeste und ersetzen keinen Test einer künftig geänderten Konfiguration.
 
 `rollout undo` stellt eine frühere Pod-Vorlage wieder her. Eine referenzierte
 ConfigMap wird dabei nicht zurückgesetzt und muss separat angepasst werden.

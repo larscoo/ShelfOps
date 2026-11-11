@@ -5,7 +5,9 @@
 Die Pipeline ist auf GitHub erfolgreich gelaufen und die Pflichtchecks sind
 aktiv. Im Demo-PR ist der rote Lint-Check samt Merge-Sperre nachgewiesen.
 Nach Entfernen des absichtlichen Imports sind im selben PR alle drei Checks
-erfolgreich; der Merge ist freigegeben. Beide Zustände sind per Screenshot belegt.
+erfolgreich. Beide Zustände sind per Screenshot belegt. Der Demo-PR
+[#10](https://github.com/larscoo/ShelfOps/pull/10) wurde am 24.09.2026 gemergt;
+sein Abschluss ist bei der späteren GitHub-Abschlussprüfung bestätigt worden.
 Die Hausaufgabe wird auf ShelfOps im Repository-Wurzelverzeichnis übertragen.
 Wir testen Python 3.12 entsprechend `requires-python`; die Python-3.11-Matrix aus
 dem separaten Labor ist damit noch nicht erledigt.
@@ -18,8 +20,12 @@ dem separaten Labor ist damit noch nicht erledigt.
 - [x] Pflichtchecks für `main` eingerichtet und geprüft.
 - [x] Demo-PR mit rotem Lint-Check und gesperrtem Merge dokumentiert.
 - [x] Derselbe PR nach Reparatur grün und mergebar dokumentiert.
-- [ ] Screenshots im Repository und im PR verlinkt.
-- [ ] PR bei grüner CI gemergt; anschliessender Lauf auf `main` grün.
+- [x] Screenshots im Repository vorhanden und unten verlinkt; im Demo-PR als Nachweise benannt.
+- [x] Demo-PR nach Reparatur mit grüner CI gemergt.
+- [x] Erfolgreiche CI auf `main` nachgewiesen; aktueller Lauf unten verlinkt.
+
+Die folgenden Abschnitte dokumentieren das damalige Vorgehen. Der
+absichtliche Fehler muss für die Abschlussabnahme nicht erneut eingebaut werden.
 
 ## 1. Pipeline veröffentlichen
 
@@ -78,11 +84,11 @@ Beide Screenshots und die Lauf-Links im Repository dokumentieren und im PR
 verlinken. Ein zusätzlicher Commit für die Nachweise löst erneut CI aus;
 vor dem Merge auch dessen vollständigen grünen Lauf abwarten.
 
-## Belege (nach Durchführung ergänzen)
+## Belege
 
 - Pipeline-PR: [#9](https://github.com/larscoo/ShelfOps/pull/9), grün gemergt.
 - Erster grüner Lauf auf `main`: [36026595602](https://github.com/larscoo/ShelfOps/actions/runs/36026595602).
-- Demo-PR: [#10](https://github.com/larscoo/ShelfOps/pull/10).
+- Demo-PR: [#10](https://github.com/larscoo/ShelfOps/pull/10), gemergt am 24.09.2026.
 - Roter Lauf: [36027305862](https://github.com/larscoo/ShelfOps/actions/runs/36027305862),
   Commit `72cffeac5ae958aa1f905e3f3b7575f1c8f8764d`.
   Lint fehlgeschlagen, Tests erfolgreich, Build übersprungen;
@@ -92,6 +98,9 @@ vor dem Merge auch dessen vollständigen grünen Lauf abwarten.
   Commit `1365b1b6aec95872aeae5f8ed785598e20a8c83a`.
   Alle drei Pflichtchecks erfolgreich; GitHub meldet `mergeStateStatus: CLEAN`.
 - [Screenshot: grüne Pflichtchecks und freigegebener Merge](cools-ci-gruen.png), visuell geprüft.
-- Grüner Lauf auf `main`: ausstehend
+- Aktueller grüner Lauf auf `main`:
+  [38411801620](https://github.com/larscoo/ShelfOps/actions/runs/38411801620)
+  vom 13.10.2026. Dies ist ein späterer Integrationsnachweis, nicht der
+  unmittelbar auf den damaligen Demo-Merge folgende Lauf.
 
 Die Quellen-/KI-Datei wird wie vereinbart manuell vom Projektverantwortlichen gepflegt.

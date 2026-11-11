@@ -43,26 +43,39 @@ die tatsächliche Änderung. Keine Secrets, lokalen Umgebungen oder IDE-Dateien 
 Für Dokumentationsänderungen: Inhalte, relative Links und `git diff --check` prüfen.
 Tests sind bei reiner Dokumentation nicht nötig, im PR begründen.
 
-Sobald Anwendung und Werkzeuge eingerichtet sind, gehören diese Prüfungen vor jeden Code-PR (aktuell noch nicht ausführbar):
+Vor jedem Code-PR die lokale Umgebung installieren und diese Prüfungen
+ausführen. `make cov` benötigt Docker und prüft beide Speicher mit einer
+eigenen kurzlebigen PostgreSQL-Testdatenbank:
 
 ```sh
-ruff check .
-ruff format --check .
-pytest --cov=app --cov-report=term-missing
+make lint
+make cov
 ```
 
-Die vollständige CI muss zusätzlich das Coverage-Gate von mindestens 80 % und den Docker-Build enthalten, später auch Trivy.
+Die CI führt Lint, Formatprüfung, Tests beider Speicher, das Coverage-Gate
+von mindestens 80 %, Docker-Build und Container-Smoke-Test aus. Trivy blockiert
+HIGH-/CRITICAL-Funde mit verfügbarem Fix im bestehenden Check `Build image`.
+Die [Scan-Schwelle und ihre Grenzen](MONITORING.md) sind dokumentiert.
 Nachweise verlinken den konkreten Workflow-Lauf oder dokumentieren Befehl, Datum und tatsächliches Ergebnis.
 Nicht ausgeführte Prüfungen werden ausdrücklich als offen bezeichnet.
 
-## GitHub-Einrichtung und erster PR
+## Aktueller Branch-Schutz
 
-Der lokale Grundgerüst-Branch ist `docs/project-foundation`.
-Branch-Schutz ist eingerichtet, CI-Pflichtprüfungen folgen nach dem ersten Workflow-Lauf.
+`main` verlangt Pull Requests und die erfolgreichen Pflichtchecks
+`Lint gate (ruff)`, `Test (Python 3.12)` und `Build image`. Der PR-Branch muss
+aktuell sein. Die Regeln gelten auch für Administratoren; Force-Pushes und
+das Löschen von `main` sind nicht erlaubt. Offene Review-Unterhaltungen
+müssen aufgelöst sein. Eine fremde Review-Freigabe ist für diese Einzelarbeit
+nicht vorgeschrieben; die schriftliche Selbstprüfung bleibt Pflicht.
 
-Zielkonfiguration für `main`: Pull Requests erforderlich, direkte Pushes und Force-Pushes verhindern, Regeln auch für Administratoren anwenden und nach dem
-ersten CI-Lauf die tatsächlichen Check-Namen als Pflichtprüfungen hinterlegen.
-Für diese Einzelarbeit ist keine fremde Review-Freigabe erforderlich, die schriftliche Selbstprüfung bleibt Pflicht.
+Die Konfiguration wurde bei der Abschlussprüfung am 13./14.10.2026
+über die GitHub-API überprüft.
+
+## Historischer Projektstart: Woche 2
+
+Der Grundgerüst-Branch war `docs/project-foundation`. Zu diesem Zeitpunkt
+war noch keine CI eingerichtet. Die folgende Ausnahme beschreibt nur
+den damaligen Projektstart, nicht das aktuelle Merge-Verfahren.
 
 Woche 2 verlangt einen ersten gemergten PR; CI ist Inhalt von Woche 5. Deshalb
 kann der Dokumentations-PR nach lokaler Prüfung und persönlicher Selbstprüfung
@@ -70,8 +83,9 @@ auf GitHub gemergt werden. In seiner Beschreibung steht ausdrücklich:
 „Keine CI vorhanden; Dokumentation lokal geprüft.“ Der PR zählt nicht zu den
 mindestens fünf für die Abschlussabnahme benötigten PRs mit grüner CI.
 
-Ab Woche 5 werden die tatsächlichen CI-Checks als Pflichtprüfungen hinterlegt.
-Mindestens fünf PRs müssen vor der Abgabe nachweislich mit grüner CI gemergt sein.
+Seit Woche 5 sind die tatsächlichen CI-Checks als Pflichtprüfungen hinterlegt.
+Mindestens fünf PRs mit grüner CI vor dem Merge sind in der
+[Abnahme-Checkliste](abnahme-checkliste.md) nachgewiesen.
 
 Für den ersten PR verwenden wir „Create a merge commit“, damit die einzeln
 geprüften Commits im Verlauf von `main` erhalten bleiben. Nach dem Merge lokal:

@@ -647,3 +647,55 @@ Abschlussprüfung über die GitHub-API als vorhanden und nicht abgelaufen
 bestätigt. Die Aufbewahrung bleibt auf 14 Tage begrenzt; für die finale
 Abgabe ist ein rechtzeitig gesicherter Bericht des finalen Stands sinnvoll.
 
+
+### Debian-Paketupdates nach erneutem CI-Fund am 11.11.2026
+
+Der [PR-CI-Lauf 43041347355](https://github.com/larscoo/ShelfOps/actions/runs/43041347355)
+für [PR #24](https://github.com/larscoo/ShelfOps/pull/24) scheiterte am
+Trivy-Gate: zwei HIGH-Funde im Debian-Paket `zlib1g`, keine CRITICAL-Funde.
+Installiert war `1:1.3.dfsg+really1.3.1-1+b1`; als Fix nennt der Bericht
+`1:1.3.dfsg+really1.3.1-1+deb13u1`.
+
+Der Debian Security Tracker bestätigt diese Fix-Version für
+[CVE-2026-76844](https://security-tracker.debian.org/tracker/CVE-2026-76844)
+und [CVE-2026-85091](https://security-tracker.debian.org/tracker/CVE-2026-85091).
+Der Berichtstitel zum ersten Fund nennt abweichend `webpack-dev-middleware`;
+für die Paketzuordnung und Korrektur wurde deshalb der Debian-Eintrag geprüft.
+
+Das mit `--pull` bezogene Python-Basisimage enthielt das Paket noch in der
+älteren Version. Das Dockerfile aktualisiert deshalb mit `apt-get update`
+und `apt-get upgrade -y` die bereits installierten Debian-Pakete aus den
+konfigurierten Paketquellen. Der Schritt liegt in der gemeinsamen Basisstufe
+für Builder und Runtime; danach werden die Paketlisten entfernt. So ist
+keine eigene Update-Zeile für jedes betroffene Paket nötig.
+
+**Begründung der Update-Strategie:** Neue Schwachstellen werden laufend
+bekannt, und Debian veröffentlicht regelmässig korrigierte Pakete. Daraus
+folgt jedoch kein tägliches Update für jedes Paket oder für dieses Image.
+Die [Debian-Sicherheitsmeldungen](https://www.debian.org/security/)
+zeigen die jeweiligen Veröffentlichungen; die
+[Security-FAQ](https://www.debian.org/security/faq) beschreibt das Aktualisieren
+betroffener Pakete über APT. Zwischen dem Bau eines Basisimages und unserem
+nächsten Build können bereits weitere Korrekturen verfügbar sein. Ein
+allgemeiner Upgrade-Schritt berücksichtigt diese verfügbaren Paketupdates,
+ohne die Dockerfile-Liste für jeden neuen Fund erweitern zu müssen.
+Ein bisher grüner Scan ist deshalb eine Momentaufnahme. Regelmässige
+Neubauten und erneute Scans bleiben erforderlich; ein bereits laufender
+Container aktualisiert sich durch diesen Build-Schritt nicht automatisch.
+
+Laut [Debian-Handbuch zu apt-get](https://manpages.debian.org/trixie/apt/apt-get.8.en.html)
+behält `upgrade` Pakete zurück, falls deren Update zusätzliche Pakete oder
+Entfernungen erfordern würde. Solche Fälle müssen anhand des Build-Logs und
+des Scans gesondert geprüft werden. Ein Distributionswechsel ist damit nicht
+verbunden. Die Python-Laufzeit unter `/usr/local` stammt weiterhin aus dem
+Python-Basisimage; Python-Abhängigkeiten werden separat anhand der Bereiche
+in `pyproject.toml` installiert. Bei neuen Paketständen können sich Verhalten
+und Image-Grösse ändern, weshalb Smoke-Test und Trivy-Gate weiterhin nötig sind.
+
+Der Upgrade-Schritt läuft bei Ausführung des betreffenden Build-Layers.
+Für einen bewusst frischen lokalen Paketstand mit `--pull --no-cache` bauen,
+damit ein vorhandener Docker-Layer den APT-Schritt nicht überspringt.
+Das HIGH-/CRITICAL-Gate mit `--ignore-unfixed` bleibt unverändert.
+Die erfolgreiche Behebung muss der nächste Build samt Smoke-Test und
+Trivy-Scan noch bestätigen. Die Berichte aus Oktober bleiben historische
+Nachweise und werden nicht überschrieben.

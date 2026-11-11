@@ -1,5 +1,9 @@
 # Adapted from CDS212: beispiel-app/Dockerfile (base / builder / runtime).
 FROM python:3.12-slim AS base
+# Apply Debian package updates that are newer than the Python base image.
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && rm -rf /var/lib/apt/lists/*
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 WORKDIR /app

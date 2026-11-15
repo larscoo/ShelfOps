@@ -2,7 +2,7 @@
 
 Aus der CDS212-Projektvorlage übernommen und für ShelfOps ergänzt (siehe [Quellen und KI-Nutzung](docs/quellen-und-ki.md))
 
-Stand: 11. November 2026
+Stand: 15. November 2026
 
 Die Haken beziehen sich auf die jeweils verlinkte Konfiguration oder den
 dokumentierten Prüflauf. Lokale Labor-Stacks wurden danach gestoppt bzw.
@@ -152,7 +152,8 @@ für die damaligen Laborstände; die gemeinsame Datenhaltung bleibt offen.
 - [x] Das Dashboard-JSON ist im Repository versioniert.
 - [x] Ein Trivy-Scan läuft in der Pipeline und ist im Log sichtbar.
 - [x] Der Trivy-Schwellwert ist gesetzt und dokumentiert.
-- [ ] `git log -p` enthält keine Passwörter, Tokens oder Keys.
+- [x] Git-Historie und Screenshots auf versehentlich veröffentlichte Passwörter,
+      Tokens und Schlüssel geprüft, keine bestätigten Secrets gefunden ([Prüfnachweis vom 15.11.2026](docs/nachweise/secret-pruefung.md)).
 - [x] Secrets liegen in GitHub Secrets bzw. der Deploy-Umgebung, nicht im Code.
 
 Monitoring-Nachweise vom 12./13.10.2026:
@@ -165,13 +166,12 @@ Trivy lief in [CI 38411801620](https://github.com/larscoo/ShelfOps/actions/runs/
 erfolgreich. Das Artefakt `trivy-gate-report` wurde bei der Abschlussprüfung
 als vorhanden und nicht abgelaufen bestätigt (Aufbewahrung: 14 Tage).
 
-Secret-Prüfstand: Keine `.env`, privaten Schlüssel oder Terraform-State-Dateien
-versioniert. Die Workflows referenzieren GitHub Secrets, Compose eine lokale
-`.env`; versionierte Testwerte sind als Beispiele erkennbar.
-Eine begrenzte Mustersuche in der Git-Historie fand keine typischen
-GitHub-Tokens, AWS-Zugriffsschlüssel, privaten Schlüssel oder Render-Hook-Keys.
-Das ist keine vollständige Secret-Prüfung; Screenshots wurden dabei nicht
-erneut geprüft. Deshalb bleibt die umfassende Historienprüfung oben offen.
+Secret-Prüfstand vom 15.11.2026: 80 erreichbare Commits mit 203 Text- und
+elf Screenshot-Dateiversionen sowie Git-Metadaten geprüft. Trivy meldete keine
+Secrets; zusätzliche Muster-Treffer wurden als Demo-/Testwerte,
+Variablenreferenzen oder öffentliche IDs eingeordnet. Keine `.env`, privaten
+Schlüssel oder Terraform-State-Dateien in der geprüften Historie gefunden.
+Verfahren, Grenzen und Ergebnis stehen im [Secret-Prüfnachweis](docs/nachweise/secret-pruefung.md).
 
 ## Dokumentation
 

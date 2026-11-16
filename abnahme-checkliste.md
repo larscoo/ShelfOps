@@ -264,10 +264,9 @@ sichtbar. Es wird keine bereits vorhandene gemeinsame Datenhaltung behauptet.
 
 ## Abschlussvorbereitung und Veröffentlichung
 
-Die noch offenen Veröffentlichungsaufgaben sind ausschliesslich hier aufgeführt,
-um dieselben Schritte nicht mehrfach als offene Punkte zu führen. Vorbereitete
-Texte und bestandene Tests sind erledigt; Merge, Prüfung des dabei entstehenden
-Commits sowie Tag und Release werden erst nach Durchführung abgehakt.
+Die Veröffentlichungsaufgaben sind hier zusammengefasst und abgeschlossen.
+Der Release-Stand ist Commit `9cb739fdf071cd3e756bc5ef38b826356c0bfab1`.
+Dieser nachträgliche Dokumentationsabgleich verändert den veröffentlichten Tag nicht.
 
 - [x] Release-Anmerkungen als [RELEASE_NOTES.md](RELEASE_NOTES.md) vorbereitet:
       Funktionen, öffentliche URL, bekannte Einschränkungen und Rückblick.
@@ -280,16 +279,21 @@ Commits sowie Tag und Release werden erst nach Durchführung abgehakt.
       `664429963dbe656d87a6a82ea3846a33bef79f62`; `/ready` HTTP 200 mit
       `status: ready`. Dies bestätigt den Vorbereitungsstand, nicht einen
       künftig entstehenden Release-Commit.
-- [ ] Diese Dokumentationsänderungen über einen PR mergen; CI und CD für den
-      dadurch entstehenden finalen `main`-Commit erneut bestätigen.
-- [ ] Vor dem Tag die öffentliche Render-Instanz auf passende Commit-SHA,
-      `/health` und `/ready` prüfen.
+- [x] Dokumentationsänderungen mit [PR #27](https://github.com/larscoo/ShelfOps/pull/27)
+      gemergt; [CI 43862344557](https://github.com/larscoo/ShelfOps/actions/runs/43862344557)
+      und [CD 43862522931](https://github.com/larscoo/ShelfOps/actions/runs/43862522931)
+      für den Release-Commit erfolgreich, auf GitHub lesend geprüft.
+- [x] Öffentliche Render-Instanz vor dem Tag geprüft: Laut übermittelter
+      Terminalausgabe liefert `/health` den Release-Commit, Version `1.0.0`
+      und `status: ok`; `/ready` liefert `status: ready`.
 - [x] Quellen-/KI-Deklaration für den Abschlussvorbereitungsstand vom 16.11.2026
       nachgeführt; weitere Unterstützung bis zur Veröffentlichung gegebenenfalls ergänzen.
 - [x] Übertragung der Woche-4-Aufgabe auf ShelfOps ist laut Bestätigung des
       Projektverantwortlichen vom 16.11.2026 von der Kursleitung anerkannt
       ([Nachweisdokumentation](abgabe/README.md)).
-- [ ] Tag `v1.0.0` auf dem geprüften finalen `main` setzen und das GitHub-Release
-      mit Funktionen, Render-URL, Einschränkungen und Rückblick veröffentlichen.
+- [x] Tag `v1.0.0` verweist auf den geprüften Release-Commit; das
+      [GitHub-Release](https://github.com/larscoo/ShelfOps/releases/tag/v1.0.0)
+      ist veröffentlicht (kein Entwurf, kein Vorabrelease). Die Release-Anmerkungen
+      enthalten Funktionen, Render-URL, Einschränkungen und Rückblick.
 
 Frist: **18. Januar 2027, 12:00 Uhr**.

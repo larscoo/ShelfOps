@@ -475,6 +475,8 @@ Die gleichen fachlichen Regeln werden mit beiden Speicherarten geprüft.
 - [Umfang, API und Geschäftsregeln](docs/umfang.md)
 - [Arbeitsweise und Selbstprüfung](CONTRIBUTING.md)
 - [Abnahme-Checkliste](abnahme-checkliste.md)
+- [Selbsteinschätzung mit Belegen](BEWERTUNG.md)
+- [Vorbereitete Release-Anmerkungen für v1.0.0](RELEASE_NOTES.md)
 - [Quellen und KI-Nutzung](docs/quellen-und-ki.md)
 - [PostgreSQL-/Compose-Prüfnachweis](docs/nachweise/compose.md)
 - [Lokaler Betrieb mit Terraform](terraform/README.md)

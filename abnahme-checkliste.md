@@ -2,7 +2,7 @@
 
 Aus der CDS212-Projektvorlage übernommen und für ShelfOps ergänzt (siehe [Quellen und KI-Nutzung](docs/quellen-und-ki.md))
 
-Stand: 15. November 2026
+Stand: 16. November 2026
 
 Die Haken beziehen sich auf die jeweils verlinkte Konfiguration oder den
 dokumentierten Prüflauf. Lokale Labor-Stacks wurden danach gestoppt bzw.
@@ -18,7 +18,6 @@ entfernt; ein Haken behauptet keinen dauerhaft laufenden Dienst.
 - [x] Jeder dieser PRs war zum Merge-Zeitpunkt grün in der CI.
 - [x] [CONTRIBUTING.md](CONTRIBUTING.md) beschreibt GitHub Flow, Commit- und Selbstprüfungsregeln.
 - [x] Die Commit-Historie zeigt kontinuierliche Arbeit über die Wochen, nicht einen einzelnen Grosscommit.
-- [ ] Tag `v1.0.0` ist gesetzt und ein Release mit Anmerkungen ist veröffentlicht.
 
 GitHub-Abgleich vom 13./14.10.2026: 23 gemergte PRs, alle mit Beschreibung;
 `normansuesstrunk` ist als Collaborator aufgeführt. Für
@@ -31,7 +30,7 @@ Checks samt Abschlusszeitpunkten vor dem jeweiligen Merge geprüft.
 Frühe PRs ohne CI werden für diesen Nachweis nicht mitgezählt.
 Branch-Schutz: PR-Pflicht, aktuelle Branches, drei Pflichtchecks,
 Admin-Durchsetzung, keine Force-Pushes und keine Branch-Löschung.
-Die Historie enthält Arbeitsschritte im September und Oktober 2026.
+Die Historie enthält Arbeitsschritte im September, Oktober und November 2026.
 
 ## Containerisierung
 
@@ -54,6 +53,8 @@ veröffentlichten Host-Port liefert HTTP 200 mit `{"status":"ok"}`; Docker melde
 per SIGTERM mit Exit-Code 0; der temporäre Testcontainer wurde entfernt.
 Start- und Prüfbefehle stehen im [README](README.md#start-im-docker-container).
 
+PostgreSQL-/Compose-Nachweis: [Prüfung vom 24.09.2026](docs/nachweise/compose.md).
+
 ## Hausaufgabe Woche 04
 
 Woche-04-Ergänzung: [Nachweise und Übertragung auf ShelfOps](abgabe/README.md).
@@ -61,7 +62,8 @@ Woche-04-Ergänzung: [Nachweise und Übertragung auf ShelfOps](abgabe/README.md)
 - [x] Statistik im Compose-Container mit PostgreSQL geprüft und Antwort gespeichert.
 - [x] Naives und optimiertes Image gebaut, Grössen gemessen und begründet.
 - [x] Screenshot `abgabe/docker-images.png` ergänzt und beide Image-Grössen geprüft.
-- [ ] Anerkennung der ShelfOps-Übertragung statt der wörtlichen Taskboard-Aufgabe geklärt.
+- [x] Anerkennung der ShelfOps-Übertragung statt der wörtlichen Taskboard-Aufgabe
+      durch die Kursleitung bestätigt; vom Projektverantwortlichen am 16.11.2026 mitgeteilt.
 
 ## CI-Pipeline
 
@@ -90,7 +92,7 @@ Hook und Smoke-Test-Ziel sind für den neuen Blueprint-Service abgeglichen.
 Code-Rollback mit Wiederherstellung erfolgreich erprobt. Der vollständige
 Neuaufbau durch eine fachfremde Person bleibt offen; siehe [Runbook](DEPLOYMENT.md).
 
-Aktueller Integrationsnachweis vom 13.10.2026:
+Historischer Integrationsnachweis vom 13.10.2026:
 [CI 38411801620](https://github.com/larscoo/ShelfOps/actions/runs/38411801620)
 und [CD 38411945331](https://github.com/larscoo/ShelfOps/actions/runs/38411945331)
 erfolgreich. Die öffentliche Instanz lieferte beim Abschlussabgleich
@@ -141,7 +143,9 @@ Nachweise: [Startanleitung und Manifeste](k8s/README.md),
 [Anfrageprotokoll](woche08/protokoll-rollout.txt),
 [Rollback](woche08/protokoll-rollback.txt) und [Analyse](woche08/analyse.md).
 Der Cluster wurde nach den Übungen entfernt. Die Betriebsnachweise gelten
-für die damaligen Laborstände; die gemeinsame Datenhaltung bleibt offen.
+für die damaligen Laborstände. Die gemeinsame Datenbank wurde am 16.11.2026
+bewusst aus dem Abgabeumfang ausgeschlossen; die Einschränkung ist unten
+und in den Release-Anmerkungen dokumentiert.
 
 ## Monitoring und Sicherheit
 
@@ -180,7 +184,8 @@ Verfahren, Grenzen und Ergebnis stehen im [Secret-Prüfnachweis](docs/nachweise/
 - [x] `DEPLOYMENT.md` ist als abarbeitbares Runbook geschrieben.
 - [x] `MONITORING.md` beschreibt Metriken, Dashboard und Schwellwerte.
 - [x] Mindestens zwei ADRs unter `docs/adr/` mit den vier Pflichtabschnitten.
-- [ ] Eine kursfremde Person kann das Projekt allein anhand der Doku starten.
+- [x] Start anhand der Dokumentation in einem frischen Klon praktisch simuliert
+      ([Compose-Prüfnachweis](docs/nachweise/frischer-klon.md)); kein unabhängiger Personentest behauptet.
 
 Vorhanden: [Architektur mit C4-Diagrammen](docs/architektur.md),
 [Deployment-Runbook](DEPLOYMENT.md), [Monitoring](MONITORING.md),
@@ -204,15 +209,16 @@ Teil dieses Prüflaufs.
       ([Prüfnachweis vom 11.11.2026](docs/nachweise/frischer-klon.md)).
 - [x] Quellen- und KI-Deklaration für den bisherigen Arbeitsstand ergänzt.
       [docs/quellen-und-ki.md](docs/quellen-und-ki.md) enthält Einträge bis
-      11.11.2026; bei weiteren Arbeiten bis zur Abgabe nachführen.
-- [ ] Tag `v1.0.0` ist gesetzt, Release mit Anmerkungen veröffentlicht.
+      16.11.2026 einschliesslich Klontest, Secret-Prüfung und Abschlussvorbereitung.
 
 Selbsteinschätzung und Dokumentationsänderungen wurden mit
 [PR #24](https://github.com/larscoo/ShelfOps/pull/24) auf `main` übernommen
 (Commit `cbe0cbbc44d967ff75b703254aee1d6ac7753a43`). Der danach erstellte
-Nachweis des frischen Klons muss noch über einen eigenen PR übernommen werden.
-Weitere offene praktische Prüfungen und die Release-Abgabe bleiben davon
-unabhängig.
+Nachweis des frischen Klons ist mit
+[PR #25](https://github.com/larscoo/ShelfOps/pull/25) übernommen worden,
+[PR #26](https://github.com/larscoo/ShelfOps/pull/26) ergänzt die Secret-Prüfung.
+Tag und Release werden erst nach dem Merge dieser Abschlussvorbereitung
+und erfolgreichen Prüfungen des finalen `main`-Commits veröffentlicht.
 
 ## Zusätzliche vereinbarte Nachweise
 
@@ -229,12 +235,61 @@ unabhängig.
 - [x] Erneuter Terraform-Plan nach Apply zeigt keine Änderungen (Idempotenz).
 - [x] Rolling Update unter laufenden Anfragen ohne beobachteten Ausfall nachgewiesen.
 - [x] Resource-Limits sind in den Kubernetes-Deployments gesetzt.
-- [ ] Kubernetes-Replikate verwenden dieselbe Datenbank; aktuell getrennte In-Memory-Speicher.
+- [x] Betriebsgrenze der Kubernetes-Demo dokumentiert: getrennte In-Memory-Speicher,
+      keine gemeinsame Datenbank im gewählten Abgabeumfang.
 - [x] Dashboard „ShelfOps Overview“ zeigt Veränderungen unter Testlast.
 - [x] Trivy-Bericht mit Commit/Image-Bezug abgelegt.
-- [ ] Fremde Person hat den dokumentierten Start nachvollzogen; Ergebnis festgehalten.
-- [ ] GitHub-Release zu `v1.0.0` nennt Funktionen, Render-URL und Einschränkungen.
+
+Optional: Ein zusätzlicher Test durch eine unabhängige fremde Person wurde
+nicht durchgeführt. Der praktische Starttest wurde durch Codex simuliert
+und ist oben verlinkt.
+
+## Bewusste Umfangsentscheidung: Kubernetes-Demo
+
+Entscheidung vom **16.11.2026**: Eine gemeinsame
+PostgreSQL-Datenbank in Kubernetes wird für diese Abgabe nicht ergänzt.
+Die Kurs-Mindestkriterien für Kubernetes sind Namespace, Deployment,
+Service mit Port 80 → 8000, mindestens zwei Replikate sowie Liveness- und
+Readiness-Probes. Sie sind durch die vorhandenen Manifeste und Laborprotokolle
+belegt. Die gemeinsame Kubernetes-Datenbank war ein zusätzliches eigenes
+Ziel und wird deshalb nicht mehr als unerledigter Pflichtpunkt geführt.
+
+Die drei Pods teilen keine Bibliotheksdaten. Daten können je nach
+angesprochenem Pod unterschiedlich sein und gehen beim Ersetzen eines Pods
+verloren. Der Cluster demonstriert Skalierung und Rollouts, konsistenter
+persistenter Fachbetrieb ist lokal über Compose mit PostgreSQL nachgewiesen.
+Die Demo-Grenze bleibt in [k8s/README.md](k8s/README.md),
+[Architektur](docs/architektur.md) und [Release-Anmerkungen](RELEASE_NOTES.md)
+sichtbar. Es wird keine bereits vorhandene gemeinsame Datenhaltung behauptet.
+
+## Abschlussvorbereitung und Veröffentlichung
+
+Die noch offenen Veröffentlichungsaufgaben sind ausschliesslich hier aufgeführt,
+um dieselben Schritte nicht mehrfach als offene Punkte zu führen. Vorbereitete
+Texte und bestandene Tests sind erledigt; Merge, Prüfung des dabei entstehenden
+Commits sowie Tag und Release werden erst nach Durchführung abgehakt.
+
+- [x] Release-Anmerkungen als [RELEASE_NOTES.md](RELEASE_NOTES.md) vorbereitet:
+      Funktionen, öffentliche URL, bekannte Einschränkungen und Rückblick.
+- [x] Vorbereitungsstand `664429963dbe656d87a6a82ea3846a33bef79f62`:
+      [CI 43738544669](https://github.com/larscoo/ShelfOps/actions/runs/43738544669)
+      und [CD 43738678144](https://github.com/larscoo/ShelfOps/actions/runs/43738678144)
+      erfolgreich, am 16.11.2026 lesend geprüft.
+- [x] Öffentliche Instanz am 16.11.2026 lesend geprüft:
+      `/health` HTTP 200 mit `status: ok`, Version `1.0.0` und Commit
+      `664429963dbe656d87a6a82ea3846a33bef79f62`; `/ready` HTTP 200 mit
+      `status: ready`. Dies bestätigt den Vorbereitungsstand, nicht einen
+      künftig entstehenden Release-Commit.
+- [ ] Diese Dokumentationsänderungen über einen PR mergen; CI und CD für den
+      dadurch entstehenden finalen `main`-Commit erneut bestätigen.
+- [ ] Vor dem Tag die öffentliche Render-Instanz auf passende Commit-SHA,
+      `/health` und `/ready` prüfen.
+- [x] Quellen-/KI-Deklaration für den Abschlussvorbereitungsstand vom 16.11.2026
+      nachgeführt; weitere Unterstützung bis zur Veröffentlichung gegebenenfalls ergänzen.
+- [x] Übertragung der Woche-4-Aufgabe auf ShelfOps ist laut Bestätigung des
+      Projektverantwortlichen vom 16.11.2026 von der Kursleitung anerkannt
+      ([Nachweisdokumentation](abgabe/README.md)).
+- [ ] Tag `v1.0.0` auf dem geprüften finalen `main` setzen und das GitHub-Release
+      mit Funktionen, Render-URL, Einschränkungen und Rückblick veröffentlichen.
 
 Frist: **18. Januar 2027, 12:00 Uhr**.
-
-PostgreSQL-/Compose-Nachweis: [Prüfung vom 24.09.2026](docs/nachweise/compose.md).

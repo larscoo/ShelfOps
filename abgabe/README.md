@@ -4,8 +4,10 @@ Diese Abgabe überträgt die Hausaufgabe auf die Bibliotheksverwaltung.
 Die Kursaufgabe verlangt wörtlich Taskboard, `/api/tasks/stats` und die Tags
 `taskboard:local` / `taskboard:naiv`. Hier verwenden wir ausdrücklich
 `/copies/stats` und `shelfops:local` / `shelfops:naiv`.
-Die Anerkennung dieser Übertragung durch die Kursleitung ist noch nicht bestätigt;
-dies ist kein Nachweis für die unveränderte Taskboard-Aufgabe.
+Die Kursleitung hat diese Übertragung anerkannt. Der Projektverantwortliche
+hat dies am 16.11.2026 im Arbeitsdialog bestätigt. Die folgenden Nachweise
+beziehen sich auf die vereinbarte ShelfOps-Umsetzung; sie dokumentieren
+keine unveränderte Taskboard-Anwendung.
 
 ## Ergebnisse vom 24.09.2026
 

@@ -27,6 +27,9 @@ Werkzeug: ChatGPT / OpenAI Codex
 | 13.–14.10.2026 | `MONITORING.md` mit Panel-Dokumentation erstellt, SLOs, Error Budgets, eigener Alarmregel und Runbook kontrolliert, Trivy-Gate in CI, C4-Architektur und zwei ADRs ergänzt, Projektprüfung und Aktualisierung der Nachweisdokumentation durchgeführt |
 | 22.10.2026 | Hilfstellung für Labor- und Hausaufgaben bis W9, Git-Historie und Nachweisen abgeglichen |
 | 11.11.2026 | Markdown-Dokumentation und Abgabevorgaben geprüft, Pflichtdokumente und offene Ergänzungen aufgelistet, Vorlage `BEWERTUNG.md` nach dem Kursraster erstellt, Zusammensuchen der Belege für BEWERTUNG.md und entsprechend ergänzt |
+| 11.11.2026 | Start aus einem frischen GitHub-Klon mit neuem Compose-Volume, fachlichem Smoke-Test und Persistenzprüfung durchgeführt und [Prüfnachweis](nachweise/frischer-klon.md) erstellt |
+| 15.11.2026 | Abschliessende Secret-Prüfung der erreichbaren Git-Historie und der Screenshots mit Trivy [Prüfnachweis](nachweise/secret-pruefung.md) und wertfreie Ergebniszusammenfassung erstellt sowie Checkliste und Bewertungsbelege ergänzt |
+| 16.11.2026 | Abnahme-Checkliste aktualisiert und Release-Anmerkungen mit Rückblickentwurf sowie Veröffentlichungsschritte vorbereitet |
 
 KI hat mir ausserdem Theorien erklärt und Verständnisfragen beantwortet.
 Ebenfalls wurden einige Git-Commit-Texte von Codex vorbereitet, Hilfstellung bezüglich Terminal Git-Befehle gab es auch.

@@ -31,8 +31,14 @@ ist danach auch im Browser unter http://localhost:30080 erreichbar.
 
 Jeder Pod hat seinen eigenen In-Memory-Speicher. Bibliotheksdaten werden nicht
 zwischen Replikaten geteilt und gehen beim Austausch der Pods verloren. Der
-vollständige Projektbetrieb mit mehreren Replikaten benötigt eine gemeinsame
-Datenbank; diese ist hier noch nicht eingerichtet.
+konsistente Fachbetrieb mit mehreren Replikaten würde eine gemeinsame
+Datenbank benötigen. Für die Abschlussabgabe wurde am 16.11.2026 bewusst
+entschieden, die Kubernetes-Konfiguration als Skalierungs- und Rollout-Demo
+beizubehalten. Die gemeinsame Datenbank war eine zusätzliche Erweiterung
+und ist keine ausdrückliche Kubernetes-Mindestanforderung des Kurses.
+Persistente Bibliotheksdaten werden im lokalen Compose-Betrieb mit PostgreSQL
+nachgewiesen. Die Einschränkung dieser Kubernetes-Demo ist in den
+[Release-Anmerkungen](../RELEASE_NOTES.md) aufgeführt.
 
 `secret.example.yaml` enthält ausschliesslich einen Beispielwert und dient zur
 Demonstration von Kubernetes-Secrets. Eine lokale Kopie `secret.yaml` wird
